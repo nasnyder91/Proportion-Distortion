@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */; };
 		CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */; };
 		CEE5FD261E7A04BF00AB16C4 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */; };
 		CEE5FD291E7A04BF00AB16C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepsViewController.swift; sourceTree = "<group>"; };
 		CEE5FD201E7A04BF00AB16C4 /* ProportionDistortion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProportionDistortion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */,
 				CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */,
+				CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */,
 				CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */,
 				CEE5FD2A1E7A04BF00AB16C4 /* Assets.xcassets */,
 				CEE5FD2C1E7A04BF00AB16C4 /* LaunchScreen.storyboard */,
@@ -201,6 +204,7 @@
 			files = (
 				CEE5FD261E7A04BF00AB16C4 /* StepsViewController.swift in Sources */,
 				CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */,
+				CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

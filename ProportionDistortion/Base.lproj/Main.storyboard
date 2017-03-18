@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Steps View Controller-->
         <scene sceneID="ubA-HZ-O8P">
             <objects>
-                <viewController id="yKS-Lv-wYj" sceneMemberID="viewController">
+                <viewController id="yKS-Lv-wYj" customClass="StepsViewController" customModule="ProportionDistortion" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WhR-Um-43z"/>
                         <viewControllerLayoutGuide type="bottom" id="xLF-at-UGU"/>
@@ -30,9 +30,48 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gt3-FT-yYX">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gt3-FT-yYX">
                                         <rect key="frame" x="0.0" y="32" width="359" height="555"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lq0-24-b1e">
+                                                <rect key="frame" x="0.0" y="28" width="359" height="50"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lq0-24-b1e" id="NRw-Qh-O99">
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step 1: ......" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCu-1s-gUB">
+                                                            <rect key="frame" x="8" y="14" width="85" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="d2D-Sk-aZY">
+                                                <rect key="frame" x="0.0" y="78" width="359" height="50"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d2D-Sk-aZY" id="kV2-cX-PqM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="49"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add New Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIm-hv-KKr">
+                                                            <rect key="frame" x="115" y="12" width="129" height="24"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <segue destination="NJq-dP-zvl" kind="presentation" identifier="AddNewStep" id="4tr-Ko-8gw"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
                                     </tableView>
                                 </subviews>
                                 <constraints>
@@ -55,6 +94,65 @@
             </objects>
             <point key="canvasLocation" x="1140" y="-176.76161919040482"/>
         </scene>
+        <!--Add Steps View Controller-->
+        <scene sceneID="wgV-2G-qah">
+            <objects>
+                <viewController id="NJq-dP-zvl" customClass="AddStepsViewController" customModule="ProportionDistortion" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ecf-z6-2Qg"/>
+                        <viewControllerLayoutGuide type="bottom" id="uji-XN-ZM9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HxD-jH-wbq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dEX-SN-tpc">
+                                <rect key="frame" x="8" y="72" width="359" height="545"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYc-rc-u9Q">
+                                        <rect key="frame" x="125" y="0.0" width="109.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Enter new step here.  Press Save Step when done." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhH-EH-T93">
+                                        <rect key="frame" x="0.0" y="29" width="359" height="479"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="479" id="owD-P8-caG"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzn-0g-1Tu">
+                                        <rect key="frame" x="145" y="516" width="69" height="29"/>
+                                        <state key="normal" title="Save Step"/>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="jhH-EH-T93" firstAttribute="leading" secondItem="dEX-SN-tpc" secondAttribute="leading" id="Qoh-z5-tH3"/>
+                                    <constraint firstAttribute="trailing" secondItem="jhH-EH-T93" secondAttribute="trailing" id="Srw-F2-kyA"/>
+                                    <constraint firstItem="jhH-EH-T93" firstAttribute="top" secondItem="dEX-SN-tpc" secondAttribute="top" constant="29" id="hR9-f8-Gd2"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dEX-SN-tpc" secondAttribute="trailing" constant="8" id="1lY-3b-AYi"/>
+                            <constraint firstItem="dEX-SN-tpc" firstAttribute="leading" secondItem="HxD-jH-wbq" secondAttribute="leading" constant="8" id="36i-1a-MgK"/>
+                            <constraint firstItem="dEX-SN-tpc" firstAttribute="top" secondItem="Ecf-z6-2Qg" secondAttribute="bottom" constant="8" id="Mzz-e5-IG5"/>
+                            <constraint firstItem="uji-XN-ZM9" firstAttribute="top" secondItem="dEX-SN-tpc" secondAttribute="bottom" constant="50" id="aac-uK-wcS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="T5K-gQ-2O1"/>
+                    <connections>
+                        <outlet property="addStepTextField" destination="jhH-EH-T93" id="Vl6-tC-RZb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ed-wg-2CW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2079.1999999999998" y="530.28485757121439"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zpv-YP-C27">
             <objects>
@@ -73,5 +171,26 @@
             </objects>
             <point key="canvasLocation" x="200.80000000000001" y="-176.76161919040482"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mbS-5p-dIF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cRk-kl-m3C" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6GC-Gj-kJ5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NJq-dP-zvl" kind="relationship" relationship="rootViewController" id="ddP-J2-U2M"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LCb-WG-Xl8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1140" y="529.38530734632684"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ddP-J2-U2M"/>
+    </inferredMetricsTieBreakers>
 </document>
