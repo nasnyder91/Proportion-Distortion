@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */; };
-		CEE5FD261E7A04BF00AB16C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD251E7A04BF00AB16C4 /* ViewController.swift */; };
+		CEE5FD261E7A04BF00AB16C4 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */; };
 		CEE5FD291E7A04BF00AB16C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */; };
 		CEE5FD2B1E7A04BF00AB16C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD2A1E7A04BF00AB16C4 /* Assets.xcassets */; };
 		CEE5FD2E1E7A04BF00AB16C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD2C1E7A04BF00AB16C4 /* LaunchScreen.storyboard */; };
@@ -28,7 +28,7 @@
 /* Begin PBXFileReference section */
 		CEE5FD201E7A04BF00AB16C4 /* ProportionDistortion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProportionDistortion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEE5FD251E7A04BF00AB16C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		CEE5FD281E7A04BF00AB16C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEE5FD2A1E7A04BF00AB16C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEE5FD2D1E7A04BF00AB16C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */,
-				CEE5FD251E7A04BF00AB16C4 /* ViewController.swift */,
+				CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */,
 				CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */,
 				CEE5FD2A1E7A04BF00AB16C4 /* Assets.xcassets */,
 				CEE5FD2C1E7A04BF00AB16C4 /* LaunchScreen.storyboard */,
@@ -199,7 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE5FD261E7A04BF00AB16C4 /* ViewController.swift in Sources */,
+				CEE5FD261E7A04BF00AB16C4 /* StepsViewController.swift in Sources */,
 				CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +406,7 @@
 				CEE5FD3F1E7A04BF00AB16C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CEE5FD401E7A04BF00AB16C4 /* Build configuration list for PBXNativeTarget "ProportionDistortionTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +415,7 @@
 				CEE5FD421E7A04BF00AB16C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

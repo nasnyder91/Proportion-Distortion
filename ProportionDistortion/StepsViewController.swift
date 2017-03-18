@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  StepsViewController.swift
 //  ProportionDistortion
 //
 //  Created by Dingy Pumba on 3/15/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class StepsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
