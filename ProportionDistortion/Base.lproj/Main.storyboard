@@ -24,16 +24,24 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dEX-SN-tpc">
                                 <rect key="frame" x="8" y="72" width="359" height="545"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Enter new step here.  Press Save when done." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhH-EH-T93">
-                                        <rect key="frame" x="0.0" y="0.0" width="359" height="545"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a step below.  Press Save when done." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZM-la-VH7">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glX-FO-gI7">
+                                        <rect key="frame" x="0.0" y="24" width="359" height="521"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="jhH-EH-T93" firstAttribute="leading" secondItem="dEX-SN-tpc" secondAttribute="leading" id="Qoh-z5-tH3"/>
-                                    <constraint firstAttribute="trailing" secondItem="jhH-EH-T93" secondAttribute="trailing" id="Srw-F2-kyA"/>
+                                    <constraint firstItem="vZM-la-VH7" firstAttribute="leading" secondItem="dEX-SN-tpc" secondAttribute="leading" id="NBR-UE-q7s"/>
+                                    <constraint firstAttribute="trailing" secondItem="vZM-la-VH7" secondAttribute="trailing" id="SKT-83-7cW"/>
+                                    <constraint firstAttribute="trailing" secondItem="glX-FO-gI7" secondAttribute="trailing" id="fFq-Kl-nYC"/>
+                                    <constraint firstItem="glX-FO-gI7" firstAttribute="leading" secondItem="dEX-SN-tpc" secondAttribute="leading" id="xwd-bN-8Zb"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -58,7 +66,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addStepTextField" destination="jhH-EH-T93" id="Vl6-tC-RZb"/>
+                        <outlet property="addStepTextField" destination="glX-FO-gI7" id="Thu-2z-Iq1"/>
                         <outlet property="saveButton" destination="dJt-l6-Cg3" id="Olk-BD-x9r"/>
                     </connections>
                 </viewController>
@@ -83,7 +91,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTj-E1-5E9">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTj-E1-5E9">
                                             <rect key="frame" x="8" y="8" width="359" height="33"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>

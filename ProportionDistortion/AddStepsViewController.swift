@@ -10,10 +10,10 @@ import UIKit
 import os.log
 
 
-class AddStepsViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+class AddStepsViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate {
     
 //MARK: Properties
-    @IBOutlet weak var addStepTextField: UITextField!
+    @IBOutlet weak var addStepTextField: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var step: Step?
