@@ -45,9 +45,9 @@ class StepsTableViewController: UITableViewController {
         let stepCellIdentifier = "StepsTableViewCell"
         let addStepCellIdentifier = "AddNewStepTableViewCell"
         
-        let currentCell = steps[indexPath.row].step
+        let currentCellIndex = indexPath.row
         
-        if currentCell != "Add New Step" {
+        if currentCellIndex < steps.count-1 {
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: stepCellIdentifier, for: indexPath) as? StepsTableViewCell else {
                 fatalError("Cell is not of type StepsTableViewCell")

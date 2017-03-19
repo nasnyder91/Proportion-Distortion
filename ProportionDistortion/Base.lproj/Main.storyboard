@@ -46,7 +46,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add New Step" id="T5K-gQ-2O1">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ZWv-cB-i6Y"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ZWv-cB-i6Y">
+                            <connections>
+                                <action selector="cancelAddStep:" destination="NJq-dP-zvl" id="evh-Ve-360"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="dJt-l6-Cg3">
                             <connections>
                                 <segue destination="hs6-aK-ZCe" kind="unwind" unwindAction="unwindToStepsListWithSender:" id="2Wy-Zv-1E2"/>

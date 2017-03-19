@@ -45,6 +45,19 @@ class AddStepsViewController: UIViewController, UITextFieldDelegate, UINavigatio
     
 
 // MARK: - Navigation
+    @IBAction func cancelAddStep(_ sender: UIBarButtonItem) {
+        let isPresentingInAddStepMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddStepMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("AddStepViewController is not in a navigation controller")
+        }
+    }
 
     
     
