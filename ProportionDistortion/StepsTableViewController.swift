@@ -18,6 +18,12 @@ class StepsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Automatically adjust cells to fit textview size
+        self.tableView.estimatedRowHeight = 50
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.setNeedsLayout()
+        self.tableView.layoutIfNeeded()
+        
         let lastCell = steps.last
         
         if lastCell?.step != "Add New Step" {
