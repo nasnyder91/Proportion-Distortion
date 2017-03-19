@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="eO3-6z-vQf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="m6k-BZ-TuF">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,92 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Steps View Controller-->
-        <scene sceneID="ubA-HZ-O8P">
-            <objects>
-                <viewController id="yKS-Lv-wYj" customClass="StepsViewController" customModule="ProportionDistortion" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="WhR-Um-43z"/>
-                        <viewControllerLayoutGuide type="bottom" id="xLF-at-UGU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="me0-bH-0db">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ENR-wp-C7r">
-                                <rect key="frame" x="8" y="72" width="359" height="587"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipe Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6LN-yL-5Ol">
-                                        <rect key="frame" x="120.5" y="0.0" width="118" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Gt3-FT-yYX">
-                                        <rect key="frame" x="0.0" y="32" width="359" height="555"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="lq0-24-b1e">
-                                                <rect key="frame" x="0.0" y="28" width="359" height="50"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lq0-24-b1e" id="NRw-Qh-O99">
-                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="49"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Step 1: ......" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCu-1s-gUB">
-                                                            <rect key="frame" x="8" y="14" width="85" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="d2D-Sk-aZY">
-                                                <rect key="frame" x="0.0" y="78" width="359" height="50"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d2D-Sk-aZY" id="kV2-cX-PqM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="49"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add New Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIm-hv-KKr">
-                                                            <rect key="frame" x="115" y="12" width="129" height="24"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                                <connections>
-                                                    <segue destination="NJq-dP-zvl" kind="presentation" identifier="AddNewStep" id="4tr-Ko-8gw"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Gt3-FT-yYX" firstAttribute="leading" secondItem="ENR-wp-C7r" secondAttribute="leading" id="ebx-Ks-kzT"/>
-                                    <constraint firstAttribute="trailing" secondItem="Gt3-FT-yYX" secondAttribute="trailing" id="efQ-3Z-Jbf"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ENR-wp-C7r" secondAttribute="trailing" constant="8" id="6hr-8X-6vi"/>
-                            <constraint firstItem="ENR-wp-C7r" firstAttribute="top" secondItem="WhR-Um-43z" secondAttribute="bottom" constant="8" id="AWI-RE-pAD"/>
-                            <constraint firstItem="xLF-at-UGU" firstAttribute="top" secondItem="ENR-wp-C7r" secondAttribute="bottom" constant="8" id="E4h-u9-OJw"/>
-                            <constraint firstItem="ENR-wp-C7r" firstAttribute="leading" secondItem="me0-bH-0db" secondAttribute="leading" constant="8" id="Wde-yW-vrG"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="B9D-ol-dKR"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ESr-YT-9dG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1140" y="-176.76161919040482"/>
-        </scene>
-        <!--Add Steps View Controller-->
+        <!--Add New Step-->
         <scene sceneID="wgV-2G-qah">
             <objects>
                 <viewController id="NJq-dP-zvl" customClass="AddStepsViewController" customModule="ProportionDistortion" customModuleProvider="target" sceneMemberID="viewController">
@@ -109,30 +24,16 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dEX-SN-tpc">
                                 <rect key="frame" x="8" y="72" width="359" height="545"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Step" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYc-rc-u9Q">
-                                        <rect key="frame" x="125" y="0.0" width="109.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Enter new step here.  Press Save Step when done." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhH-EH-T93">
-                                        <rect key="frame" x="0.0" y="29" width="359" height="479"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="479" id="owD-P8-caG"/>
-                                        </constraints>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Enter new step here.  Press Save when done." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jhH-EH-T93">
+                                        <rect key="frame" x="0.0" y="0.0" width="359" height="545"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzn-0g-1Tu">
-                                        <rect key="frame" x="145" y="516" width="69" height="29"/>
-                                        <state key="normal" title="Save Step"/>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="jhH-EH-T93" firstAttribute="leading" secondItem="dEX-SN-tpc" secondAttribute="leading" id="Qoh-z5-tH3"/>
                                     <constraint firstAttribute="trailing" secondItem="jhH-EH-T93" secondAttribute="trailing" id="Srw-F2-kyA"/>
-                                    <constraint firstItem="jhH-EH-T93" firstAttribute="top" secondItem="dEX-SN-tpc" secondAttribute="top" constant="29" id="hR9-f8-Gd2"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -144,32 +45,86 @@
                             <constraint firstItem="uji-XN-ZM9" firstAttribute="top" secondItem="dEX-SN-tpc" secondAttribute="bottom" constant="50" id="aac-uK-wcS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="T5K-gQ-2O1"/>
+                    <navigationItem key="navigationItem" title="Add New Step" id="T5K-gQ-2O1">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ZWv-cB-i6Y"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dJt-l6-Cg3">
+                            <connections>
+                                <segue destination="hs6-aK-ZCe" kind="unwind" unwindAction="unwindToStepsListWithSender:" id="2Wy-Zv-1E2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addStepTextField" destination="jhH-EH-T93" id="Vl6-tC-RZb"/>
+                        <outlet property="saveButton" destination="dJt-l6-Cg3" id="Olk-BD-x9r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ed-wg-2CW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hs6-aK-ZCe" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2079.1999999999998" y="530.28485757121439"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Zpv-YP-C27">
+        <!--Steps-->
+        <scene sceneID="Osi-5f-wZj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eO3-6z-vQf" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vut-Oh-arr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="yKS-Lv-wYj" kind="relationship" relationship="rootViewController" id="D8j-Jb-Svu"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dMn-Oz-ovD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="IZN-hC-DAS" customClass="StepsTableViewController" customModule="ProportionDistortion" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" id="cTw-Fm-Kv5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StepsTableViewCell" id="lrW-gu-Z2x" customClass="StepsTableViewCell" customModule="ProportionDistortion" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lrW-gu-Z2x" id="dA0-SN-zO3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTj-E1-5E9">
+                                            <rect key="frame" x="8" y="8" width="359" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="step" destination="yTj-E1-5E9" id="hW6-Z7-iFu"/>
+                                    <segue destination="NJq-dP-zvl" kind="show" identifier="EditStep" id="obL-ba-lhc"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddNewStepTableViewCell" id="hUd-MF-CfB" customClass="AddStepsTableViewCell" customModule="ProportionDistortion" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="78" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hUd-MF-CfB" id="gjb-yX-dr6">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add New Step" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLI-7u-9SO">
+                                            <rect key="frame" x="8" y="8" width="359" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="step" destination="hLI-7u-9SO" id="X55-GW-LhE"/>
+                                    <segue destination="cRk-kl-m3C" kind="presentation" identifier="AddStep" id="69E-fs-noa"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="IZN-hC-DAS" id="1wS-Td-3gM"/>
+                            <outlet property="delegate" destination="IZN-hC-DAS" id="S67-Sz-eQG"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Steps" id="rXm-9g-KT9"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47s-Mt-OYi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="200.80000000000001" y="-176.76161919040482"/>
+            <point key="canvasLocation" x="2079.1999999999998" y="-217.24137931034485"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mbS-5p-dIF">
@@ -189,8 +144,26 @@
             </objects>
             <point key="canvasLocation" x="1140" y="529.38530734632684"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dzr-NU-3A8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m6k-BZ-TuF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1QC-CN-ROB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="IZN-hC-DAS" kind="relationship" relationship="rootViewController" id="OkL-uV-9RX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dnT-bV-V1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1140" y="-217.24137931034485"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ddP-J2-U2M"/>
+        <segue reference="obL-ba-lhc"/>
     </inferredMetricsTieBreakers>
 </document>

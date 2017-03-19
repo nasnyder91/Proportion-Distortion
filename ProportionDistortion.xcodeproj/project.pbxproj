@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */; };
+		CE37B1601E7DA2BE00F89A67 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B15F1E7DA2BE00F89A67 /* Step.swift */; };
+		CE37B1621E7DB23200F89A67 /* StepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */; };
+		CE37B1641E7DB35F00F89A67 /* StepsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B1631E7DB35F00F89A67 /* StepsTableViewController.swift */; };
+		CEE448201E7DEB22009CEE5F /* AddStepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4481F1E7DEB22009CEE5F /* AddStepsTableViewCell.swift */; };
 		CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */; };
-		CEE5FD261E7A04BF00AB16C4 /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */; };
 		CEE5FD291E7A04BF00AB16C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */; };
 		CEE5FD2B1E7A04BF00AB16C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD2A1E7A04BF00AB16C4 /* Assets.xcassets */; };
 		CEE5FD2E1E7A04BF00AB16C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD2C1E7A04BF00AB16C4 /* LaunchScreen.storyboard */; };
@@ -28,9 +31,12 @@
 
 /* Begin PBXFileReference section */
 		CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepsViewController.swift; sourceTree = "<group>"; };
+		CE37B15F1E7DA2BE00F89A67 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewCell.swift; sourceTree = "<group>"; };
+		CE37B1631E7DB35F00F89A67 /* StepsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewController.swift; sourceTree = "<group>"; };
+		CEE4481F1E7DEB22009CEE5F /* AddStepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepsTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5FD201E7A04BF00AB16C4 /* ProportionDistortion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProportionDistortion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsViewController.swift; sourceTree = "<group>"; };
 		CEE5FD281E7A04BF00AB16C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEE5FD2A1E7A04BF00AB16C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEE5FD2D1E7A04BF00AB16C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,8 +86,11 @@
 			isa = PBXGroup;
 			children = (
 				CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */,
-				CEE5FD251E7A04BF00AB16C4 /* StepsViewController.swift */,
+				CE37B1631E7DB35F00F89A67 /* StepsTableViewController.swift */,
+				CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */,
+				CEE4481F1E7DEB22009CEE5F /* AddStepsTableViewCell.swift */,
 				CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */,
+				CE37B15F1E7DA2BE00F89A67 /* Step.swift */,
 				CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */,
 				CEE5FD2A1E7A04BF00AB16C4 /* Assets.xcassets */,
 				CEE5FD2C1E7A04BF00AB16C4 /* LaunchScreen.storyboard */,
@@ -202,7 +211,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE5FD261E7A04BF00AB16C4 /* StepsViewController.swift in Sources */,
+				CE37B1621E7DB23200F89A67 /* StepsTableViewCell.swift in Sources */,
+				CEE448201E7DEB22009CEE5F /* AddStepsTableViewCell.swift in Sources */,
+				CE37B1601E7DA2BE00F89A67 /* Step.swift in Sources */,
+				CE37B1641E7DB35F00F89A67 /* StepsTableViewController.swift in Sources */,
 				CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */,
 				CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */,
 			);

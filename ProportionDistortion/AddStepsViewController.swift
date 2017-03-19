@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import os.log
+
 
 class AddStepsViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
     
 //MARK: Properties
     @IBOutlet weak var addStepTextField: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    var step: Step?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addStepTextField.delegate = self
+        
+        if let step = step {
+            addStepTextField.text = step.step
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -25,18 +36,31 @@ class AddStepsViewController: UIViewController, UITextFieldDelegate, UINavigatio
         // Dispose of any resources that can be recreated.
     }
     
-//MARK: UITextViewDelegate
+//MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     
 
-    /*
-    // MARK: - Navigation
+// MARK: - Navigation
 
+    
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guard let button = sender as? UIBarButtonItem, button === saveButton else{
+            os_log("The save button was not pressed, cancelling.", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        let stepEntry = addStepTextField.text ?? ""
+        
+        step = Step(step: stepEntry)
+        
+        print(stepEntry)
     }
-    */
+    
 
 }
