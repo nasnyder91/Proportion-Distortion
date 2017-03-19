@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="m6k-BZ-TuF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="oBL-JK-UKh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -255,10 +255,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableViewCell" id="y6b-aq-i5g" customClass="IngredientTableViewCell" customModule="ProportionDistortion" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientTableViewCell" id="y6b-aq-i5g" customClass="IngredientTableViewCell" customModule="ProportionDistortion" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="y6b-aq-i5g" id="svk-j5-fWZ">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" contentMode="center" tableViewCell="y6b-aq-i5g" id="svk-j5-fWZ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -327,7 +327,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addNewIngredientLabel" destination="pbL-bq-eIa" id="tey-4d-DfU"/>
-                                    <outlet property="step" destination="pbL-bq-eIa" id="zOF-MY-dGv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -336,7 +335,17 @@
                             <outlet property="delegate" destination="Z2X-fg-d3Y" id="5C9-KS-wmw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Ingredients" id="uAf-FM-PFF"/>
+                    <navigationItem key="navigationItem" title="Ingredients" id="uAf-FM-PFF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cFH-8A-ggZ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NGb-Z1-wAb">
+                            <connections>
+                                <action selector="saveIngredients:" destination="Z2X-fg-d3Y" id="bpT-Ov-dpv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="NGb-Z1-wAb" id="3pJ-6b-qnK"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AqJ-LW-0mF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

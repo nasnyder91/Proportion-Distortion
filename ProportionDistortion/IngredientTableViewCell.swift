@@ -8,23 +8,27 @@
 
 import UIKit
 
-class IngredientTableViewCell: UITableViewCell {
+class IngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
     
 //MARK: Properties
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var unitTextField: UITextField!
     @IBOutlet weak var ingredientTextField: UITextField!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
 
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
-
+    
+//MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

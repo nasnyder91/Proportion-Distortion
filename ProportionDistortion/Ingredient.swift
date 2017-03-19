@@ -9,16 +9,21 @@
 import UIKit
 
 class Ingredient {
-    var quantity: Int
+    var quantity: String
     var unit: String
     var ingredient: String
     
-    init?(quantity: Int, unit: String, ingredient: String) {
-        if quantity < 1 || unit.isEmpty || ingredient.isEmpty {
+    init?(quantity: String, unit: String, ingredient: String) {
+        if Int(quantity)! < 1 || unit.isEmpty || ingredient.isEmpty {
             return nil
         }
         self.quantity = quantity
         self.unit = unit
         self.ingredient = ingredient
+    }
+    init() {
+        self.quantity = ""
+        self.unit = ""
+        self.ingredient = ""
     }
 }

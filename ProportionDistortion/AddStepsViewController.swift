@@ -71,8 +71,6 @@ class AddStepsViewController: UIViewController, UITextViewDelegate, UINavigation
         let stepEntry = addStepTextField.text ?? ""
         
         step = Step(step: stepEntry)
-        
-        print(stepEntry)
     }
     
 
