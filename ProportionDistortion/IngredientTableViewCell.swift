@@ -14,6 +14,7 @@ class IngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var unitTextField: UITextField!
     @IBOutlet weak var ingredientTextField: UITextField!
+    weak var parentTableView: IngredientsTableViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,9 @@ class IngredientTableViewCell: UITableViewCell, UITextFieldDelegate {
 //MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        
+        parentTableView?.updateSavebuttonState()
+        
         return true
     }
 }

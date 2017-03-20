@@ -23,6 +23,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         if lastCell?.ingredient != "Add New Ingredient" {
             loadAddCell()
         }
+        updateSavebuttonState()
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +57,8 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             cell.quantityTextField.delegate = cell.self
             cell.unitTextField.delegate = cell.self
             cell.ingredientTextField.delegate = cell.self
+            
+            cell.parentTableView = self
             
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             
@@ -160,5 +163,27 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         }
         
         ingredients += [addNewIngredientCell]
+    }
+    func updateSavebuttonState() {
+        
+        if ingredients.count == 1 {
+            
+            saveButton.isEnabled = false
+            return
+        }
+        for i in 0..<ingredients.count-1 {
+            let newIndexPath = IndexPath(row: i, section: 0)
+            guard let ingredientCell = tableView.cellForRow(at: newIndexPath) as? IngredientTableViewCell else {
+                fatalError("The cell is not of type IngredientTableViewCell")
+            }
+            let ingredientText = ingredientCell.ingredientTextField.text ?? ""
+            
+            if ingredientText.isEmpty {
+                print("Hi")
+                saveButton.isEnabled = false
+            } else {
+                saveButton.isEnabled = true
+            }
+        }
     }
 }
