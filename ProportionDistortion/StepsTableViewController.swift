@@ -14,7 +14,8 @@ class StepsTableViewController: UITableViewController {
     
 //MARK: Properties
     var steps = [Step]()
-
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,11 +25,7 @@ class StepsTableViewController: UITableViewController {
         self.tableView.setNeedsLayout()
         self.tableView.layoutIfNeeded()
         
-        let lastCell = steps.last
-        
-        if lastCell?.step != "Add New Step" {
-            loadAddCell()
-        }
+        loadAddCell()
     }
 
     override func didReceiveMemoryWarning() {
@@ -130,6 +127,10 @@ class StepsTableViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let button = sender as? UIBarButtonItem, button === saveButton {
+            return
+        }
+        
         switch (segue.identifier ?? "") {
             
         case "AddStep":
@@ -176,15 +177,17 @@ class StepsTableViewController: UITableViewController {
     }
 
     
-//MARK: Private Methods
+//MARK: Helper Methods
     
-    private func loadAddCell() {
+    func loadAddCell() {
         let addNewStepText = "Add New Step"
         
         guard let newStepButtonCell = Step(step: addNewStepText) else {
             fatalError("Could not create Add New Step cell")
         }
         
-        steps += [newStepButtonCell]
+        if steps.last?.step != addNewStepText {
+            steps += [newStepButtonCell]
+        }
     }
 }

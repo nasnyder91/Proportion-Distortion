@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2DB0B11E80A1D4003A0FB1 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DB0B01E80A1D4003A0FB1 /* Recipe.swift */; };
+		CE2DB0B31E80A3CF003A0FB1 /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DB0B21E80A3CF003A0FB1 /* AddRecipeViewController.swift */; };
 		CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */; };
 		CE37B1601E7DA2BE00F89A67 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B15F1E7DA2BE00F89A67 /* Step.swift */; };
 		CE37B1621E7DB23200F89A67 /* StepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE2DB0B01E80A1D4003A0FB1 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		CE2DB0B21E80A3CF003A0FB1 /* AddRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
 		CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepsViewController.swift; sourceTree = "<group>"; };
 		CE37B15F1E7DA2BE00F89A67 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +76,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE2DB0AD1E80A188003A0FB1 /* Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				CE2DB0B01E80A1D4003A0FB1 /* Recipe.swift */,
+				CE2DB0AE1E80A1A1003A0FB1 /* AddRecipe */,
+				CE2DB0AF1E80A1AA003A0FB1 /* ShowRecipe */,
+			);
+			name = Recipe;
+			sourceTree = "<group>";
+		};
+		CE2DB0AE1E80A1A1003A0FB1 /* AddRecipe */ = {
+			isa = PBXGroup;
+			children = (
+				CE2DB0B21E80A3CF003A0FB1 /* AddRecipeViewController.swift */,
+			);
+			name = AddRecipe;
+			sourceTree = "<group>";
+		};
+		CE2DB0AF1E80A1AA003A0FB1 /* ShowRecipe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ShowRecipe;
+			sourceTree = "<group>";
+		};
 		CEE5FD171E7A04BF00AB16C4 = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */,
+				CE2DB0AD1E80A188003A0FB1 /* Recipe */,
 				CEE63AF31E7EDA0700558297 /* Steps */,
 				CEE63AF41E7EDA3600558297 /* Ingredients */,
 				CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */,
@@ -118,8 +148,8 @@
 			children = (
 				CE37B1631E7DB35F00F89A67 /* StepsTableViewController.swift */,
 				CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */,
-				CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */,
 				CEE4481F1E7DEB22009CEE5F /* AddStepsTableViewCell.swift */,
+				CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */,
 				CE37B15F1E7DA2BE00F89A67 /* Step.swift */,
 			);
 			name = Steps;
@@ -239,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2DB0B31E80A3CF003A0FB1 /* AddRecipeViewController.swift in Sources */,
 				CEE63AF61E7EDA6500558297 /* IngredientTableViewCell.swift in Sources */,
 				CE37B1621E7DB23200F89A67 /* StepsTableViewCell.swift in Sources */,
 				CEE63AF81E7EDA7E00558297 /* Ingredient.swift in Sources */,
@@ -249,6 +280,7 @@
 				CE37B1641E7DB35F00F89A67 /* StepsTableViewController.swift in Sources */,
 				CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */,
 				CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */,
+				CE2DB0B11E80A1D4003A0FB1 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

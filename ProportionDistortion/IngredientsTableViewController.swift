@@ -15,14 +15,15 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var ingredients = [Ingredient]()
 
+    override func viewDidAppear(_ animated: Bool) {
+        updateSavebuttonState()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let lastCell = ingredients.last
+        loadAddCell()
         
-        if lastCell?.ingredient != "Add New Ingredient" {
-            loadAddCell()
-        }
         updateSavebuttonState()
     }
 
@@ -52,11 +53,15 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ingredientCellIdentifier, for: indexPath) as? IngredientTableViewCell else {
                 fatalError("Cell is not of type IngredientTableViewCell")
             }
-            //let ingredient = ingredients[indexPath.row]
+            let ingredient = ingredients[indexPath.row]
             
             cell.quantityTextField.delegate = cell.self
             cell.unitTextField.delegate = cell.self
             cell.ingredientTextField.delegate = cell.self
+            
+            cell.quantityTextField.text = ingredient.quantity
+            cell.unitTextField.text = ingredient.unit
+            cell.ingredientTextField.text = ingredient.ingredient
             
             cell.parentTableView = self
             
@@ -132,10 +137,6 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             os_log("The save button was not pressed, cancelling.", log: OSLog.default, type: .debug)
             return
         }
-        
-    }
-    
-    @IBAction func saveIngredients(_ sender: UIBarButtonItem) {
         for i in 0..<ingredients.count-1 {
             let cellIndex = IndexPath(row: i, section: 0)
             guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {
@@ -154,15 +155,18 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     }
     
     
-//MARK: Private Methods
-    private func loadAddCell() {
+//MARK: Helper Methods
+    
+    func loadAddCell() {
         let addNewIngredientText = "Add New Ingredient"
         
-        guard let addNewIngredientCell = Ingredient(quantity: "1", unit: "abc", ingredient: addNewIngredientText) else {
-            fatalError("Could not create the Add New Ingredient cell")
+        guard let newIngredientButtonCell = Ingredient(quantity: "1", unit: "abc", ingredient: addNewIngredientText) else {
+            fatalError("Could not create Add New Ingredient cell")
         }
         
-        ingredients += [addNewIngredientCell]
+        if ingredients.last?.ingredient != addNewIngredientText {
+            ingredients += [newIngredientButtonCell]
+        }
     }
     func updateSavebuttonState() {
         
@@ -173,13 +177,10 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         }
         for i in 0..<ingredients.count-1 {
             let newIndexPath = IndexPath(row: i, section: 0)
-            guard let ingredientCell = tableView.cellForRow(at: newIndexPath) as? IngredientTableViewCell else {
-                fatalError("The cell is not of type IngredientTableViewCell")
-            }
-            let ingredientText = ingredientCell.ingredientTextField.text ?? ""
+            let ingredientCell = tableView.cellForRow(at: newIndexPath) as? IngredientTableViewCell
+            let ingredientText = ingredientCell?.ingredientTextField.text ?? ""
             
             if ingredientText.isEmpty {
-                print("Hi")
                 saveButton.isEnabled = false
             } else {
                 saveButton.isEnabled = true
