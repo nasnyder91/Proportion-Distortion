@@ -14,11 +14,12 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
 //MARK: Properties
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var ingredients = [Ingredient]()
-
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         updateSavebuttonState()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -82,13 +83,16 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == ingredients.count-1 {
+        if (tableView.cellForRow(at: indexPath) as? AddIngredientTableViewCell) != nil {
             let newIngredient = Ingredient()
             
             ingredients.insert(newIngredient, at: ingredients.count-1)
             tableView.deselectRow(at: indexPath, animated: true)
             tableView.insertRows(at: [indexPath], with: .automatic)
+            updateSavebuttonState()
         }
+        
+        
     }
 
     
@@ -129,7 +133,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     */
 
     
-    // MARK: - Navigation
+// MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -153,6 +157,13 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             }
         }
     }
+    
+    @IBAction func cancelAddIngredients(_ sender: UIBarButtonItem) {
+        if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+    }
+    
     
     
 //MARK: Helper Methods

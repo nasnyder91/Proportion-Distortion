@@ -157,6 +157,14 @@ class StepsTableViewController: UITableViewController {
         
     }
     
+    @IBAction func cancelAddSteps(_ sender: UIBarButtonItem) {
+        if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+
+    }
+    
+    
     
 //MARK: Actions
     @IBAction func unwindToStepsList(sender: UIStoryboardSegue) {
