@@ -20,12 +20,14 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     @IBOutlet weak var addIngredientsButton: UIButton!
     @IBOutlet weak var addStepsButton: UIButton!
     @IBOutlet weak var addGroupButton: UIButton!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    
-    
+    //Data
     var recipe: Recipe?
+    var name: String?
     var steps = [Step]()
     var ingredients = [Ingredient]()
+    var group = "Placeholder"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
 //MARK: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        name = textField.text
         return true
     }
     
@@ -69,12 +72,12 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
                 }
                 destinationViewController.ingredients = ingredients
                 destinationViewController.loadAddCell()
-                //destinationViewController.updateSavebuttonState()
             }
         }
-
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if let button = sender as? UIBarButtonItem, button === saveButton {
+            recipe = Recipe(recipeName: name!, recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: group)
+        }
     }
  
 

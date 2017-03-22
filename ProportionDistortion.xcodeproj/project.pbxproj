@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2AACB41E81FED80055B6F3 /* ShowRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2AACB31E81FED80055B6F3 /* ShowRecipeViewController.swift */; };
 		CE2DB0B11E80A1D4003A0FB1 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DB0B01E80A1D4003A0FB1 /* Recipe.swift */; };
 		CE2DB0B31E80A3CF003A0FB1 /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2DB0B21E80A3CF003A0FB1 /* AddRecipeViewController.swift */; };
 		CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE2AACB31E81FED80055B6F3 /* ShowRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowRecipeViewController.swift; sourceTree = "<group>"; };
 		CE2DB0B01E80A1D4003A0FB1 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		CE2DB0B21E80A3CF003A0FB1 /* AddRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
 		CE37B15D1E7D9BAD00F89A67 /* AddStepsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepsViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		CE2DB0AF1E80A1AA003A0FB1 /* ShowRecipe */ = {
 			isa = PBXGroup;
 			children = (
+				CE2AACB31E81FED80055B6F3 /* ShowRecipeViewController.swift */,
 			);
 			name = ShowRecipe;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				CE37B1641E7DB35F00F89A67 /* StepsTableViewController.swift in Sources */,
 				CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */,
 				CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */,
+				CE2AACB41E81FED80055B6F3 /* ShowRecipeViewController.swift in Sources */,
 				CE2DB0B11E80A1D4003A0FB1 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
