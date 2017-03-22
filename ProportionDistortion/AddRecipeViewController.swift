@@ -77,6 +77,9 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         
         if let button = sender as? UIBarButtonItem, button === saveButton {
             recipe = Recipe(recipeName: name!, recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: group)
+            let navVC = segue.destination as? UINavigationController
+            let recipeViewController = navVC?.viewControllers.first as? ShowRecipeViewController
+            recipeViewController?.recipe = recipe
         }
     }
  

@@ -17,6 +17,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         updateSavebuttonState()
     }
 
