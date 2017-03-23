@@ -110,6 +110,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             ingredients.remove(at: indexPath.row)
             // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
+            updateSavebuttonState()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

@@ -74,6 +74,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             
             cell.ingredientsTextView.text = ingredientsText
             cell.ingredientsTextView.sizeToFit()
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             
             return cell
             
@@ -97,6 +98,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             
             cell.stepsTextView.text = stepsText
             cell.stepsTextView.sizeToFit()
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             
             return cell
             

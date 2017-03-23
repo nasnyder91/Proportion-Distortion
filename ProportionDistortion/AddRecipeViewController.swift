@@ -77,11 +77,17 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         }
         
         if let button = sender as? UIBarButtonItem, button === saveButton {
+            guard let destinationViewController = segue.destination as? UINavigationController else {
+                fatalError("Segue did not point to ShowRecipeViewController")
+            }
             name = recipeNameTextField.text ?? ""
             recipe = Recipe(recipeName: name!, recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: group)
-            let navVC = segue.destination as? UINavigationController
-            let recipeViewController = navVC?.viewControllers.first as? ShowRecipeViewController
-            recipeViewController?.recipe = recipe
+            guard let recipeViewController = destinationViewController.viewControllers.first as? ShowRecipeViewController else {
+                fatalError("nav controller does not present show recipe view controller")
+            }
+
+            recipeViewController.recipe = recipe
+            recipeViewController.navigationItem.title = name
         }
     }
  
