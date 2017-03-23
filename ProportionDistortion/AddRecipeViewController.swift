@@ -33,7 +33,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         super.viewDidLoad()
 
         recipeNameTextField.delegate = self
-        // Do any additional setup after loading the view.
+        updateSaveButtonState()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +45,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         name = textField.text
+        updateSaveButtonState()
         return true
     }
     
@@ -76,6 +77,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         }
         
         if let button = sender as? UIBarButtonItem, button === saveButton {
+            name = recipeNameTextField.text ?? ""
             recipe = Recipe(recipeName: name!, recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: group)
             let navVC = segue.destination as? UINavigationController
             let recipeViewController = navVC?.viewControllers.first as? ShowRecipeViewController
@@ -91,6 +93,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
             steps.remove(at: steps.count-1)
             self.steps = steps
             stepsAddedLabel.text = "\(steps.count) steps added"
+            updateSaveButtonState()
         }
         
         if let sourceViewController = sender.source as? IngredientsTableViewController {
@@ -98,6 +101,21 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
             ingredients.remove(at: ingredients.count-1)
             self.ingredients = ingredients
             ingredientsAddedLabel.text = "\(ingredients.count) ingredients added"
+            updateSaveButtonState()
+        }
+    }
+    
+//MARK: Private Methods
+    private func updateSaveButtonState() {
+        let name = recipeNameTextField.text ?? ""
+        let ingredients = ingredientsAddedLabel.text
+        let steps = stepsAddedLabel.text
+        let group = recipeGroupLabel.text ?? ""
+        
+        if !name.isEmpty && !group.isEmpty && ingredients![ingredients!.startIndex] != "0" && steps![steps!.startIndex] != "0" {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
         }
     }
     

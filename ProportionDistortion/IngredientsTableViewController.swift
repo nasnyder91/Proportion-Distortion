@@ -57,15 +57,13 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             }
             let ingredient = ingredients[indexPath.row]
             
-            cell.quantityTextField.delegate = cell.self
-            cell.unitTextField.delegate = cell.self
-            cell.ingredientTextField.delegate = cell.self
+            cell.quantityTextField.delegate = self
+            cell.unitTextField.delegate = self
+            cell.ingredientTextField.delegate = self
             
             cell.quantityTextField.text = ingredient.quantity
             cell.unitTextField.text = ingredient.unit
             cell.ingredientTextField.text = ingredient.ingredient
-            
-            cell.parentTableView = self
             
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             
@@ -134,6 +132,17 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     */
 
     
+//MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+        updateSavebuttonState()
+    }
+    
+    
 // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -189,8 +198,10 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         }
         for i in 0..<ingredients.count-1 {
             let newIndexPath = IndexPath(row: i, section: 0)
-            let ingredientCell = tableView.cellForRow(at: newIndexPath) as? IngredientTableViewCell
-            let ingredientText = ingredientCell?.ingredientTextField.text ?? ""
+            guard let ingredientCell = tableView.cellForRow(at: newIndexPath) as? IngredientTableViewCell else {
+                return
+            }
+            let ingredientText = ingredientCell.ingredientTextField.text ?? ""
             
             if ingredientText.isEmpty {
                 saveButton.isEnabled = false

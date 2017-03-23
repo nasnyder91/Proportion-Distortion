@@ -13,6 +13,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
 //MARK: Properties
     @IBOutlet weak var recipeTableView: UITableView!
     
+    
     var recipe: Recipe?
 
     override func viewDidLoad() {
@@ -57,14 +58,17 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
                 fatalError("Cell is not of type ShowIngredientsTableViewCell")
             }
             var ingredientsText = ""
+            
             if let ingredientsList = recipe?.recipeIngredients {
-                print("Hi2")
-                print(ingredientsList.count)
                 for i in 0..<ingredientsList.count {
                     let ingredient = ingredientsList[i]
                     
-                    ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)\n"
-                    print(ingredientsText)
+                    if i < ingredientsList.count-1 {
+                        ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)\n"
+                    } else {
+                        ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)"
+                    }
+                    
                 }
             }
             
@@ -77,8 +81,22 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let cell = tableView.dequeueReusableCell(withIdentifier: stepsIdentifier, for: indexPath) as? ShowStepsTableViewCell else {
                 fatalError("Cell is not of type ShowStepsTableViewCell")
             }
+            var stepsText = ""
             
-            // Configure the cell...
+            if let stepsList = recipe?.recipeSteps {
+                for i in 0..<stepsList.count {
+                    let step = stepsList[i]
+                    
+                    if i < stepsList.count-1 {
+                        stepsText += "Step \(i+1): \(step.step)\n\n"
+                    } else {
+                        stepsText += "Step \(i+1): \(step.step)"
+                    }
+                }
+            }
+            
+            cell.stepsTextView.text = stepsText
+            cell.stepsTextView.sizeToFit()
             
             return cell
             
@@ -125,21 +143,59 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
 
     
 
-    /*
-    // MARK: - Navigation
+    
+// MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        
+        
+        switch (segue.identifier ?? "") {
+            
+        case "EditIngredients":
+            guard let editIngredientsViewController = segue.destination as? IngredientsTableViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            let ingredients = recipe?.recipeIngredients
+            editIngredientsViewController.ingredients = ingredients!
+            
+        case "EditSteps":
+            guard let editStepsViewController = segue.destination as? StepsTableViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            if let steps = recipe?.recipeSteps {
+                editStepsViewController.steps = steps
+            }
+            editStepsViewController.loadAddCell()
+            
+        default:
+            fatalError("Unexpected segue identifier: \(segue.identifier)")
+        }
+        
     }
-    */
     
 //MARK: Actions
-    @IBAction func viewNewRecipe(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? AddRecipeViewController {
-            recipe = sourceViewController.recipe
+    @IBAction func unwindToRecipe(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? IngredientsTableViewController {
+            var ingredients = sourceViewController.ingredients
+            
+            ingredients.remove(at: ingredients.count-1)
+            
+            recipe?.recipeIngredients = ingredients
+            
+            recipeTableView.reloadData()
+        }
+        if let sourceViewController = sender.source as? StepsTableViewController {
+            var steps = sourceViewController.steps
+            
+            steps.remove(at: steps.count-1)
+            
+            recipe?.recipeSteps = steps
+            
+            recipeTableView.reloadData()
         }
     }
 
+    
 }
