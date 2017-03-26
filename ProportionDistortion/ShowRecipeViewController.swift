@@ -7,20 +7,43 @@
 //
 
 import UIKit
+import os.log
 
-class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UINavigationControllerDelegate {
+
+class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
 //MARK: Properties
     @IBOutlet weak var recipeTableView: UITableView!
     
-    
+    var distortPickerView = UIPickerView()
+    let distortChoices: [Double] = [0.25, 0.5, 1, 2, 3, 4]
+    var distortValue: Double?
+    var distortedIngredients = [Ingredient]()
     var recipe: Recipe?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        distortedIngredients = (recipe?.recipeIngredients)!
+        
+        //Table View delegation and data source
         self.recipeTableView.delegate = self
         self.recipeTableView.dataSource = self
+        
+        //Picker view delegation and data source
+        self.distortPickerView.delegate = self
+        self.distortPickerView.dataSource = self
+        self.distortPickerView.backgroundColor = UIColor.white
+        self.distortPickerView.isHidden = true
+        self.distortPickerView.isOpaque = true
+        self.view.addSubview(distortPickerView)
+        self.distortPickerView.translatesAutoresizingMaskIntoConstraints = false
+        self.distortPickerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.distortPickerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.distortPickerView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.distortPickerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.4, constant: 0.0)
+        self.distortPickerView.selectRow(2, inComponent: 0, animated: false)
+        
         
         //Automatically adjust cells to fit textview size
         self.recipeTableView.estimatedRowHeight = 50
@@ -53,22 +76,31 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         switch (indexPath.row) {
         case 0:
-            print("Hi1")
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ingredientsIdentifier, for: indexPath) as? ShowIngredientsTableViewCell else {
                 fatalError("Cell is not of type ShowIngredientsTableViewCell")
             }
             var ingredientsText = ""
             
-            if let ingredientsList = recipe?.recipeIngredients {
+            if let ingredientsList = self.recipe?.recipeIngredients {
                 for i in 0..<ingredientsList.count {
                     let ingredient = ingredientsList[i]
+                    let distortedIngredient = distortedIngredients[i]
                     
-                    if i < ingredientsList.count-1 {
-                        ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)\n"
+                    if distortedIngredient.quantity == ingredient.quantity {
+                        print("HI1")
+                        if i < ingredientsList.count-1 {
+                            ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)\n"
+                        } else {
+                            ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)"
+                        }
                     } else {
-                        ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)"
+                        print("Hi2")
+                        if i < ingredientsList.count-1 {
+                            ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)\n"
+                        } else {
+                            ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)"
+                        }
                     }
-                    
                 }
             }
             
@@ -143,7 +175,35 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
      }
      */
 
+//MARK: Picker View Data Source
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return distortChoices.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        var distortChoiceString: String
+        if distortChoices[row] < 1 {
+            distortChoiceString = String(distortChoices[row])
+        }
+        else {
+            distortChoiceString = String(Int(distortChoices[row]))
+        }
+        return distortChoiceString + "X"
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        distortValue = distortChoices[row]
+        pickerView.isHidden = true
+        distortIngredientsList()
+        let newIndexPath = IndexPath(row: 0, section: 0)
+        self.recipeTableView.reloadRows(at: [newIndexPath], with: .none)
+    }
+
 
     
 // MARK: - Navigation
@@ -199,5 +259,22 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
+    @IBAction func showDistortPickerView(_ sender: UIButton) {
+        distortPickerView.isHidden = false
+    }
+    
+//MARK: Instance Methods
+    func distortIngredientsList() {
+
+        if let ingredientsList = self.recipe?.recipeIngredients {
+            for i in 0..<ingredientsList.count {
+                if let initialQuantity = Double(ingredientsList[i].quantity)  {
+                    distortedIngredients[i].quantity = String(initialQuantity * distortValue!)
+                } else {
+                    distortedIngredients[i].quantity = ""
+                }
+            }
+        }
+    }
     
 }

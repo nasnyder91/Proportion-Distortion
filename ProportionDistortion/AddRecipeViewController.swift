@@ -87,6 +87,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
             }
 
             recipeViewController.recipe = recipe
+
             recipeViewController.navigationItem.title = name
         }
     }

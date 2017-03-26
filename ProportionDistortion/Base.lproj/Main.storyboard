@@ -373,7 +373,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="oOk-IT-Twk"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="p4R-mb-ArA">
                             <connections>
-                                <segue destination="6LC-gb-9Mm" kind="showDetail" identifier="AddedNewRecipe" id="oOf-by-w9X"/>
+                                <segue destination="6LC-gb-9Mm" kind="show" identifier="AddedNewRecipe" action="showDetailViewController:sender:" id="oOf-by-w9X"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -526,6 +526,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Distort!"/>
+                                        <connections>
+                                            <action selector="showDistortPickerView:" destination="99Y-hl-RAh" eventType="touchUpInside" id="0f0-P2-bZs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
