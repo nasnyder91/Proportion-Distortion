@@ -16,6 +16,11 @@
 		CE37B1601E7DA2BE00F89A67 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B15F1E7DA2BE00F89A67 /* Step.swift */; };
 		CE37B1621E7DB23200F89A67 /* StepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */; };
 		CE37B1641E7DB35F00F89A67 /* StepsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B1631E7DB35F00F89A67 /* StepsTableViewController.swift */; };
+		CE50DAC61E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DAC51E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift */; };
+		CE50DAC81E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DAC71E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift */; };
+		CE50DACB1E8C767600AE20A5 /* ProportionDistortionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DACA1E8C767600AE20A5 /* ProportionDistortionViewController.swift */; };
+		CE50DACD1E8C769400AE20A5 /* GroupNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DACC1E8C769400AE20A5 /* GroupNameTableViewCell.swift */; };
+		CE50DAD11E8C7A0F00AE20A5 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DAD01E8C7A0F00AE20A5 /* Group.swift */; };
 		CEE448201E7DEB22009CEE5F /* AddStepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4481F1E7DEB22009CEE5F /* AddStepsTableViewCell.swift */; };
 		CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */; };
 		CEE5FD291E7A04BF00AB16C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */; };
@@ -48,6 +53,11 @@
 		CE37B15F1E7DA2BE00F89A67 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewCell.swift; sourceTree = "<group>"; };
 		CE37B1631E7DB35F00F89A67 /* StepsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewController.swift; sourceTree = "<group>"; };
+		CE50DAC51E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedRecipesTableViewController.swift; sourceTree = "<group>"; };
+		CE50DAC71E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedRecipesTableViewCell.swift; sourceTree = "<group>"; };
+		CE50DACA1E8C767600AE20A5 /* ProportionDistortionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProportionDistortionViewController.swift; sourceTree = "<group>"; };
+		CE50DACC1E8C769400AE20A5 /* GroupNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNameTableViewCell.swift; sourceTree = "<group>"; };
+		CE50DAD01E8C7A0F00AE20A5 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		CEE4481F1E7DEB22009CEE5F /* AddStepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepsTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5FD201E7A04BF00AB16C4 /* ProportionDistortion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProportionDistortion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +120,25 @@
 			name = ShowRecipe;
 			sourceTree = "<group>";
 		};
+		CE50DAC41E8C6D6500AE20A5 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				CE50DAC51E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift */,
+				CE50DAC71E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift */,
+				CE50DAD01E8C7A0F00AE20A5 /* Group.swift */,
+			);
+			name = Groups;
+			sourceTree = "<group>";
+		};
+		CE50DAC91E8C727000AE20A5 /* Main Page */ = {
+			isa = PBXGroup;
+			children = (
+				CE50DACA1E8C767600AE20A5 /* ProportionDistortionViewController.swift */,
+				CE50DACC1E8C769400AE20A5 /* GroupNameTableViewCell.swift */,
+			);
+			name = "Main Page";
+			sourceTree = "<group>";
+		};
 		CEE5FD171E7A04BF00AB16C4 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */,
+				CE50DAC91E8C727000AE20A5 /* Main Page */,
+				CE50DAC41E8C6D6500AE20A5 /* Groups */,
 				CE2DB0AD1E80A188003A0FB1 /* Recipe */,
 				CEE63AF31E7EDA0700558297 /* Steps */,
 				CEE63AF41E7EDA3600558297 /* Ingredients */,
@@ -281,6 +312,7 @@
 				CE2DB0B31E80A3CF003A0FB1 /* AddRecipeViewController.swift in Sources */,
 				CEE63AF61E7EDA6500558297 /* IngredientTableViewCell.swift in Sources */,
 				CE37B1621E7DB23200F89A67 /* StepsTableViewCell.swift in Sources */,
+				CE50DAD11E8C7A0F00AE20A5 /* Group.swift in Sources */,
 				CEE63AF81E7EDA7E00558297 /* Ingredient.swift in Sources */,
 				CEE63AF21E7ED9EF00558297 /* IngredientsTableViewController.swift in Sources */,
 				CEE63AFA1E7EDBD000558297 /* AddIngredientTableViewCell.swift in Sources */,
@@ -288,10 +320,14 @@
 				CE2AACB81E8200080055B6F3 /* ShowStepsTableViewCell.swift in Sources */,
 				CE37B1601E7DA2BE00F89A67 /* Step.swift in Sources */,
 				CE37B1641E7DB35F00F89A67 /* StepsTableViewController.swift in Sources */,
+				CE50DAC61E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift in Sources */,
 				CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */,
 				CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */,
 				CE2AACB61E81FFF60055B6F3 /* ShowIngredientsTableViewCell.swift in Sources */,
 				CE2AACB41E81FED80055B6F3 /* ShowRecipeViewController.swift in Sources */,
+				CE50DACB1E8C767600AE20A5 /* ProportionDistortionViewController.swift in Sources */,
+				CE50DAC81E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift in Sources */,
+				CE50DACD1E8C769400AE20A5 /* GroupNameTableViewCell.swift in Sources */,
 				CE2DB0B11E80A1D4003A0FB1 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

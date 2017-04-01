@@ -87,7 +87,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
             }
 
             recipeViewController.recipe = recipe
-
+            recipeViewController.distortedIngredients = ingredients
             recipeViewController.navigationItem.title = name
         }
     }

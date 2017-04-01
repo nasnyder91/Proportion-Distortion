@@ -24,8 +24,6 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        distortedIngredients = (recipe?.recipeIngredients)!
-        
         //Table View delegation and data source
         self.recipeTableView.delegate = self
         self.recipeTableView.dataSource = self
@@ -81,32 +79,39 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             var ingredientsText = ""
             
-            if let ingredientsList = self.recipe?.recipeIngredients {
+            let ingredientsList = (self.recipe?.recipeIngredients)!
                 for i in 0..<ingredientsList.count {
                     let ingredient = ingredientsList[i]
                     let distortedIngredient = distortedIngredients[i]
+                    print(convertQuantityToDecimal(ingredient: ingredient))
+                    
                     
                     if distortedIngredient.quantity == ingredient.quantity {
-                        print("HI1")
+                        ingredient.quantity = convertQuantityToDecimal(ingredient: ingredient)
+                        ingredient.quantity = convertQuantityToFraction(quantity: ingredient.quantity)
+                        
                         if i < ingredientsList.count-1 {
                             ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)\n"
                         } else {
                             ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)"
                         }
                     } else {
-                        print("Hi2")
+                        distortedIngredient.quantity = convertQuantityToDecimal(ingredient: distortedIngredient)
+                        distortedIngredient.quantity = convertQuantityToFraction(quantity: distortedIngredient.quantity)
+                        
                         if i < ingredientsList.count-1 {
                             ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)\n"
                         } else {
                             ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)"
                         }
                     }
-                }
+                
             }
             
             cell.ingredientsTextView.text = ingredientsText
             cell.ingredientsTextView.sizeToFit()
             cell.selectionStyle = UITableViewCellSelectionStyle.none
+
             
             return cell
             
@@ -244,7 +249,8 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             
             ingredients.remove(at: ingredients.count-1)
             
-            recipe?.recipeIngredients = ingredients
+            self.recipe?.recipeIngredients = ingredients
+            self.distortedIngredients = ingredients
             
             recipeTableView.reloadData()
         }
@@ -265,16 +271,133 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     
 //MARK: Instance Methods
     func distortIngredientsList() {
-
-        if let ingredientsList = self.recipe?.recipeIngredients {
-            for i in 0..<ingredientsList.count {
-                if let initialQuantity = Double(ingredientsList[i].quantity)  {
-                    distortedIngredients[i].quantity = String(initialQuantity * distortValue!)
-                } else {
-                    distortedIngredients[i].quantity = ""
-                }
+        let ingredientsList = (recipe?.recipeIngredients)!
+        
+        for i in 0..<ingredientsList.count {
+            let ingredient = ingredientsList[i]
+            
+            let decimalIngredientQuantity = convertQuantityToDecimal(ingredient: ingredient)
+            
+            if let initialQuantity = Double(decimalIngredientQuantity)  {
+                let newIngredient = Ingredient(quantity: String(initialQuantity * distortValue!), unit: ingredientsList[i].unit, ingredient: ingredientsList[i].ingredient)
+                distortedIngredients[i] = newIngredient
+            } else {
+                let newIngredient = Ingredient(quantity: "", unit: ingredientsList[i].unit, ingredient: ingredientsList[i].ingredient)
+                distortedIngredients[i] = newIngredient
             }
         }
+    }
+    
+    func convertQuantityToDecimal(ingredient: Ingredient) -> String{
+        let quantity = ingredient.quantity
+        var convertedQuantity: String
+        
+        if !quantity.isEmpty && quantity.contains("/") {
+            
+            let slashIndex = quantity.range(of: "/")?.lowerBound
+            
+            let beforeSlash = quantity.substring(to: slashIndex!)
+            
+            var afterSlash = quantity.substring(from: slashIndex!)
+            afterSlash.remove(at: afterSlash.startIndex)
+            
+            if quantity.contains(" ") {
+                let spaceIndex = quantity.range(of: " ")?.lowerBound
+                
+                let wholeNumber = quantity.substring(to: spaceIndex!)
+                
+                var beforeSlashAfterSpace = beforeSlash
+                beforeSlashAfterSpace = beforeSlashAfterSpace.substring(from: (beforeSlashAfterSpace.range(of: " ")?.lowerBound)!)
+                beforeSlashAfterSpace.remove(at: beforeSlashAfterSpace.startIndex)
+                
+                let doublizedWhole = Double(wholeNumber)
+                let doublizedFirst = Double(beforeSlashAfterSpace)
+                let doublizedLast = Double(afterSlash)
+                
+                convertedQuantity = String((doublizedFirst! / doublizedLast!) + doublizedWhole!)
+                
+                return convertedQuantity
+            }
+            
+            let doublizedFirst = Double(beforeSlash)
+            let doublizedLast = Double(afterSlash)
+
+            convertedQuantity = String(doublizedFirst! / doublizedLast!)
+                
+            return convertedQuantity
+            
+        }
+        return quantity
+    }
+    
+    func convertQuantityToFraction(quantity: String) -> String {
+        var fractionizedQuantity: String
+        var finalQuantity: String
+        var wholeNumber: String
+        
+        if !quantity.contains(".") {
+            return quantity
+        }
+        
+        let decimalIndex = quantity.range(of: ".")?.lowerBound
+        
+        var numerator = quantity.substring(from: decimalIndex!)
+        numerator.remove(at: numerator.startIndex)
+        
+        if Int(numerator) == 0 {
+            return quantity.substring(to: decimalIndex!)
+        }
+        
+        if Int(quantity.substring(to: decimalIndex!)) != 0 {
+            wholeNumber = quantity.substring(to: decimalIndex!)
+        } else{
+            wholeNumber = ""
+        }
+        
+        let decimalSize = numerator.characters.count
+        
+        var denominator = "1"
+        
+        for _ in 0..<decimalSize {
+            denominator += "0"
+        }
+        
+        fractionizedQuantity = numerator + "/" + denominator
+        
+        fractionizedQuantity = reduceStringFraction(fraction: fractionizedQuantity)
+        
+        if !wholeNumber.isEmpty {
+            finalQuantity = wholeNumber + " " + fractionizedQuantity
+        } else{
+            finalQuantity = fractionizedQuantity
+        }
+        
+        return finalQuantity
+    }
+    
+    func reduceStringFraction(fraction: String) -> String{
+        print(fraction)
+        let slashIndex = fraction.range(of: "/")?.lowerBound
+        var numerator = fraction.substring(to: slashIndex!)
+        var denominator = fraction.substring(from: slashIndex!)
+        denominator.remove(at: denominator.startIndex)
+        
+        let intNumerator = Int(numerator)
+        let intDenominator = Int(denominator)
+        
+        for i in 0..<intNumerator! {
+            if (intNumerator! % (intNumerator! - i)) == 0 && (intDenominator! % (intNumerator! - i)) == 0 {
+                if numerator != String(intNumerator! / (intNumerator! - i)) && denominator != String(intDenominator! / (intNumerator! - i)){
+                    numerator = String(intNumerator! / (intNumerator! - i))
+                    denominator = String(intDenominator! / (intNumerator! - i))
+                } else {
+                    return (numerator + "/" + denominator)
+                }
+                
+                return reduceStringFraction(fraction: (numerator + "/" + denominator))
+            }
+        }
+        return (numerator + "/" + denominator)
     }
     
 }

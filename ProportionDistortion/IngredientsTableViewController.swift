@@ -182,9 +182,9 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     func loadAddCell() {
         let addNewIngredientText = "Add New Ingredient"
         
-        guard let newIngredientButtonCell = Ingredient(quantity: "1", unit: "abc", ingredient: addNewIngredientText) else {
-            fatalError("Could not create Add New Ingredient cell")
-        }
+        let newIngredientButtonCell = Ingredient(quantity: "1", unit: "abc", ingredient: addNewIngredientText) //else {
+           // fatalError("Could not create Add New Ingredient cell")
+        //}
         
         if ingredients.last?.ingredient != addNewIngredientText {
             ingredients += [newIngredientButtonCell]

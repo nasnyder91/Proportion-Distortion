@@ -13,10 +13,10 @@ class Ingredient {
     var unit: String
     var ingredient: String
     
-    init?(quantity: String, unit: String, ingredient: String) {
-        if Int(quantity)! < 1 || unit.isEmpty || ingredient.isEmpty {
-            return nil
-        }
+    init(quantity: String, unit: String, ingredient: String) {
+        //if Int(quantity)! < 1 || unit.isEmpty || ingredient.isEmpty {
+        //    return nil
+        //}
         self.quantity = quantity
         self.unit = unit
         self.ingredient = ingredient
