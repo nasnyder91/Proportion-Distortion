@@ -16,6 +16,7 @@
 		CE37B1601E7DA2BE00F89A67 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B15F1E7DA2BE00F89A67 /* Step.swift */; };
 		CE37B1621E7DB23200F89A67 /* StepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */; };
 		CE37B1641E7DB35F00F89A67 /* StepsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37B1631E7DB35F00F89A67 /* StepsTableViewController.swift */; };
+		CE4009EB1E912D7A003A0A48 /* AllRecipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4009EA1E912D7A003A0A48 /* AllRecipes.swift */; };
 		CE50DAC61E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DAC51E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift */; };
 		CE50DAC81E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DAC71E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift */; };
 		CE50DACB1E8C767600AE20A5 /* ProportionDistortionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DACA1E8C767600AE20A5 /* ProportionDistortionViewController.swift */; };
@@ -53,6 +54,7 @@
 		CE37B15F1E7DA2BE00F89A67 /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		CE37B1611E7DB23200F89A67 /* StepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewCell.swift; sourceTree = "<group>"; };
 		CE37B1631E7DB35F00F89A67 /* StepsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsTableViewController.swift; sourceTree = "<group>"; };
+		CE4009EA1E912D7A003A0A48 /* AllRecipes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllRecipes.swift; sourceTree = "<group>"; };
 		CE50DAC51E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedRecipesTableViewController.swift; sourceTree = "<group>"; };
 		CE50DAC71E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedRecipesTableViewCell.swift; sourceTree = "<group>"; };
 		CE50DACA1E8C767600AE20A5 /* ProportionDistortionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProportionDistortionViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */,
+				CE4009EA1E912D7A003A0A48 /* AllRecipes.swift */,
 				CE50DAC91E8C727000AE20A5 /* Main Page */,
 				CE50DAC41E8C6D6500AE20A5 /* Groups */,
 				CE2DB0AD1E80A188003A0FB1 /* Recipe */,
@@ -327,6 +330,7 @@
 				CE2AACB41E81FED80055B6F3 /* ShowRecipeViewController.swift in Sources */,
 				CE50DACB1E8C767600AE20A5 /* ProportionDistortionViewController.swift in Sources */,
 				CE50DAC81E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift in Sources */,
+				CE4009EB1E912D7A003A0A48 /* AllRecipes.swift in Sources */,
 				CE50DACD1E8C769400AE20A5 /* GroupNameTableViewCell.swift in Sources */,
 				CE2DB0B11E80A1D4003A0FB1 /* Recipe.swift in Sources */,
 			);

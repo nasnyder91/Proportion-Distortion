@@ -458,14 +458,14 @@
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XfA-07-EGO">
                                 <rect key="frame" x="0.0" y="632" width="375" height="35"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="98" placeholderIntrinsicHeight="35" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzk-1K-dbM">
+                                    <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="98" placeholderIntrinsicHeight="35" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzk-1K-dbM">
                                         <rect key="frame" x="0.0" y="0.0" width="185" height="35"/>
                                         <state key="normal" title="Add New Recipe"/>
                                         <connections>
                                             <segue destination="chV-M9-GjB" kind="show" identifier="AddNewRecipe" id="EEB-Bd-5h0"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="190" placeholderIntrinsicHeight="35" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMx-dx-ZmS">
+                                    <button verifyAmbiguity="off" opaque="NO" contentMode="scaleToFill" ambiguous="YES" placeholderIntrinsicWidth="190" placeholderIntrinsicHeight="35" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMx-dx-ZmS">
                                         <rect key="frame" x="185" y="0.0" width="190" height="35"/>
                                         <state key="normal" title="Add New Group"/>
                                     </button>
@@ -557,6 +557,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Group Recipes" id="Qky-4w-5eZ"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVr-sm-5iX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1045,8 +1046,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xgP-aa-LcI"/>
         <segue reference="hnE-ht-kAh"/>
+        <segue reference="xgP-aa-LcI"/>
         <segue reference="obL-ba-lhc"/>
     </inferredMetricsTieBreakers>
 </document>

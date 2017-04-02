@@ -28,6 +28,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     var steps = [Step]()
     var ingredients = [Ingredient]()
     var group = "Placeholder"
+    var recipeList: AllRecipes?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +90,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
             recipeViewController.recipe = recipe
             recipeViewController.distortedIngredients = ingredients
             recipeViewController.navigationItem.title = name
+            recipeList?.addRecipe(recipe: recipe!)
         }
     }
  

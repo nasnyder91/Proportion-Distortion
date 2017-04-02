@@ -18,7 +18,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     @IBOutlet weak var addGroupButton: UIButton!
     
     var groups = [Group]()
-    var groupRecipes = [Recipe]()
+    var recipeList = AllRecipes()
     
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,6 +95,13 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             
         case "AddNewRecipe":
             os_log("Adding a new recipe", log: OSLog.default, type: .debug)
+            guard let addRecipeNavController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let addRecipeViewController = addRecipeNavController.visibleViewController as? AddRecipeViewController else {
+                fatalError("Nav controller is not presenting AddRecipeViewController")
+            }
+            addRecipeViewController.recipeList = self.recipeList
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
@@ -122,11 +129,11 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         let recipe2 = Recipe(recipeName: "Pee", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Chicken")
         let recipe3 = Recipe(recipeName: "Barf", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Mexican")
         
-        groupRecipes += [recipe1,recipe2,recipe3]
+        recipeList.addRecipe(recipe: recipe1,recipe2,recipe3)
     }
     
     private func organizeGroupsAndRecipes() {
-        for r in groupRecipes {
+        for r in recipeList.allRecipes {
             for i in 0..<groups.count {
                 if r.recipeGroup == groups[i].groupName {
                     groups[i].groupRecipes.append(r)
