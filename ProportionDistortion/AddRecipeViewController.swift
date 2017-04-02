@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
 //MARK: Properties
     @IBOutlet weak var recipeNameTextField: UITextField!
@@ -27,13 +27,38 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     var name: String?
     var steps = [Step]()
     var ingredients = [Ingredient]()
-    var group = "Placeholder"
+    var group = ""
     var recipeList: AllRecipes?
+    var groupsList: [Group]?
+    
+    var groupsPickerView = UIPickerView()
+    var groupChoices = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         recipeNameTextField.delegate = self
+        
+        for i in 0..<(groupsList?.count ?? 0) {
+            groupChoices.append((groupsList?[i].groupName)!)
+        }
+        
+        self.groupsPickerView.delegate = self
+        self.groupsPickerView.dataSource = self
+        self.groupsPickerView.backgroundColor = UIColor.white
+        self.groupsPickerView.isHidden = true
+        self.groupsPickerView.isOpaque = true
+        self.view.addSubview(groupsPickerView)
+        self.groupsPickerView.translatesAutoresizingMaskIntoConstraints = false
+        self.groupsPickerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.groupsPickerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.groupsPickerView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.groupsPickerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.4, constant: 0.0)
+        self.groupsPickerView.selectRow(2, inComponent: 0, animated: false)
+        
+        
+        
+        
         updateSaveButtonState()
     }
 
@@ -48,6 +73,30 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         name = textField.text
         updateSaveButtonState()
         return true
+    }
+    
+//MARK: UIPickerViewDelegate and DataSource
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return groupChoices.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        var groupChoiceString: String
+        
+        groupChoiceString = groupChoices[row]
+        
+        return groupChoiceString
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.group = groupChoices[row]
+        self.recipeGroupLabel.text = groupChoices[row]
+        pickerView.isHidden = true
     }
     
 
@@ -91,6 +140,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
             recipeViewController.distortedIngredients = ingredients
             recipeViewController.navigationItem.title = name
             recipeList?.addRecipe(recipe: recipe!)
+            recipeViewController.recipeList = self.recipeList
         }
     }
  
@@ -113,6 +163,11 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
             updateSaveButtonState()
         }
     }
+    
+    @IBAction func chooseGroupButton(_ sender: UIButton) {
+        self.groupsPickerView.isHidden = false
+    }
+    
     
 //MARK: Private Methods
     private func updateSaveButtonState() {

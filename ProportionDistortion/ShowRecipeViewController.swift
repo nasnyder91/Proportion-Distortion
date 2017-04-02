@@ -16,10 +16,11 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var recipeTableView: UITableView!
     
     var distortPickerView = UIPickerView()
-    let distortChoices: [Double] = [0.25, 0.5, 1, 2, 3, 4]
+    let distortChoices: [Double] = [0.25, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     var distortValue: Double?
     var distortedIngredients = [Ingredient]()
     var recipe: Recipe?
+    var recipeList: AllRecipes?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -235,6 +236,13 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
                 editStepsViewController.steps = steps
             }
             editStepsViewController.loadAddCell()
+        
+        case "GoHome":
+            os_log("Going home", log: OSLog.default, type: .debug)
+            guard let homeViewController = segue.destination as? ProportionDistortionViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            homeViewController.recipeList = self.recipeList!
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")

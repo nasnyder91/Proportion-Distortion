@@ -28,8 +28,10 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSampleGroupRecipes()
-        loadDefaultGroups()
+        if recipeList.allRecipes.count == 0 {
+            loadSampleGroupRecipes()
+        }
+        loadGroups()
         organizeGroupsAndRecipes()
         
         self.groupsTableView.delegate = self
@@ -98,10 +100,11 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             guard let addRecipeNavController = segue.destination as? UINavigationController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            guard let addRecipeViewController = addRecipeNavController.visibleViewController as? AddRecipeViewController else {
+            guard let addRecipeViewController = addRecipeNavController.viewControllers.first as? AddRecipeViewController else {
                 fatalError("Nav controller is not presenting AddRecipeViewController")
             }
             addRecipeViewController.recipeList = self.recipeList
+            addRecipeViewController.groupsList = self.groups
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
@@ -111,14 +114,22 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     
     
 //MARK: Private Methods
-    private func loadDefaultGroups() {
+    private func loadGroups() {
         let recipes = [Recipe]()
+        var usedGroups = [String]()
         
-        let soupGroup = Group(groupName: "Soups", groupRecipes: recipes)
-        let chickenGroup = Group(groupName: "Chicken", groupRecipes: recipes)
-        let mexicanGroup = Group(groupName: "Mexican", groupRecipes: recipes)
+        for i in 0..<recipeList.allRecipes.count {
+            if !(usedGroups.contains(recipeList.allRecipes[i].recipeGroup)) {
+                let group = Group(groupName: recipeList.allRecipes[i].recipeGroup, groupRecipes: recipes)
+                groups += [group]
+                usedGroups.append(group.groupName)
+            }
+        }
+        //let soupGroup = Group(groupName: "Soups", groupRecipes: recipes)
+        //let chickenGroup = Group(groupName: "Chicken", groupRecipes: recipes)
+        //let mexicanGroup = Group(groupName: "Mexican", groupRecipes: recipes)
         
-        groups += [soupGroup, chickenGroup, mexicanGroup]
+        //groups += [soupGroup, chickenGroup, mexicanGroup]
     }
     
     private func loadSampleGroupRecipes() {
