@@ -9,20 +9,26 @@
 import UIKit
 import os.log
 
-class ProportionDistortionViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class ProportionDistortionViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
 //MARK: Properties
     @IBOutlet weak var groupsTableView: UITableView!
-    @IBOutlet weak var searchRecipesBar: UISearchBar!
     @IBOutlet weak var addRecipeButton: UIButton!
     @IBOutlet weak var addGroupButton: UIButton!
     
     var groups = [Group]()
     var recipeList = AllRecipes()
     
+    var recipeSearchResults = [Recipe]()
+    let searchResultsTable = UITableViewController()
+    var resultsSearchController = UISearchController()
+
+   // @IBOutlet var searchResultsController: UISearchController!
+    
+    
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidLoad() {
@@ -34,10 +40,30 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         loadGroups()
         organizeGroupsAndRecipes()
         
+        //searchRecipesBar.delegate = self
+        
         self.groupsTableView.delegate = self
         self.groupsTableView.dataSource = self
-        self.searchRecipesBar.delegate = self
-        self.navigationController?.isNavigationBarHidden = true
+        
+        self.searchResultsTable.tableView.delegate = self
+        self.searchResultsTable.tableView.dataSource = self
+        
+        self.resultsSearchController = (UISearchController(searchResultsController: searchResultsTable))
+        self.resultsSearchController.searchResultsUpdater = self
+        self.resultsSearchController.hidesNavigationBarDuringPresentation = false
+        self.resultsSearchController.delegate = self
+        //self.resultsSearchController.loadViewIfNeeded()
+        
+        let searchBar = resultsSearchController.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search your recipes"
+        navigationItem.titleView = resultsSearchController.searchBar
+        navigationItem.backBarButtonItem?.isEnabled = false
+        //self.groupsTableView.tableHeaderView = resultsSearchController.searchBar
+        resultsSearchController.hidesNavigationBarDuringPresentation = false
+        resultsSearchController.dimsBackgroundDuringPresentation = true
+        self.definesPresentationContext = true
+    
         
         self.addRecipeButton.translatesAutoresizingMaskIntoConstraints = false
         self.addRecipeButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5).isActive = true
@@ -57,18 +83,51 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        if self.resultsSearchController.isActive {
+            return self.recipeSearchResults.count 
+        } else {
+            return self.groups.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "GroupNameCell", for: indexPath) as? GroupNameTableViewCell else {
-            fatalError("Cell is not of type GroupNameTableViewCell")
+        print("AddingCell")
+        
+        var cell = tableView.dequeueReusableCell(withIdentifier: "GroupNameCell") as? GroupNameTableViewCell
+        
+        if cell == nil {
+            tableView.register(GroupNameTableViewCell.classForCoder(), forCellReuseIdentifier: "GroupNameCell")
+            
+            cell = GroupNameTableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "GroupNameCell")
         }
-        let group = groups[indexPath.row]
         
-        cell.groupLabel.text = group.groupName
+        var cellTitles = [String]()
         
-        return cell
+        if self.resultsSearchController.isActive {
+            for r in recipeSearchResults {
+                cellTitles.append(r.recipeName)
+            }
+        } else {
+            for g in groups {
+                cellTitles.append(g.groupName)
+            }
+        }
+        
+        let title = cellTitles[indexPath.row]
+        
+        if let label = cell?.groupLabel{
+            label.text = title
+        } else {
+            cell?.textLabel?.text = title
+        }
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.resultsSearchController.isActive {
+            performSegue(withIdentifier: "ShowSearchedRecipe", sender: searchResultsTable.tableView.cellForRow(at: indexPath))
+        }
     }
 
     
@@ -92,6 +151,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             
             let selectedGroup = groups[indexPath.row]
             
+            showGroupViewController.recipeList = self.recipeList
             showGroupViewController.recipes = selectedGroup.groupRecipes
             showGroupViewController.navigationItem.title = selectedGroup.groupName
             
@@ -106,12 +166,43 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             addRecipeViewController.recipeList = self.recipeList
             addRecipeViewController.groupsList = self.groups
             
+        case "ShowSearchedRecipe":
+            guard let recipeViewController = segue.destination as? ShowRecipeViewController else {
+                fatalError("Segue did not point to ShowRecipeViewController")
+            }
+            guard let selectedRecipeCell = sender as? GroupNameTableViewCell else {
+                fatalError("Sender was not a GroupNameTableViewCell")
+            }
+            guard let indexPath = searchResultsTable.tableView.indexPath(for: selectedRecipeCell) else {
+                fatalError("The selected cell is not in the table")
+            }
+            let recipe = recipeSearchResults[indexPath.row]
+            
+            recipeViewController.recipeList = self.recipeList
+            recipeViewController.recipe = recipe
+            recipeViewController.distortedIngredients = recipe.recipeIngredients
+            recipeViewController.navigationItem.title = recipe.recipeName
+            
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
         }
     }
     
+//MARK: Search Functions
     
+    func filterContentForSearchText(searchText: String) {
+        // Filter the array using the filter method
+        self.recipeSearchResults = self.recipeList.allRecipes.filter{ (aRecipe: Recipe) -> Bool in
+            /*return*/ aRecipe.recipeName.lowercased().range(of: searchText.lowercased()) != nil
+        }
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        self.recipeSearchResults.removeAll(keepingCapacity: false)
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
+        self.searchResultsTable.tableView.reloadData()
+    }
     
 //MARK: Private Methods
     private func loadGroups() {

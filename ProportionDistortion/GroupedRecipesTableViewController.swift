@@ -11,6 +11,7 @@ import UIKit
 class GroupedRecipesTableViewController: UITableViewController, UINavigationControllerDelegate {
     
 //MARK: Properties
+    var recipeList = AllRecipes()
     var recipes = [Recipe]()
 
     override func viewDidLoad() {
@@ -110,7 +111,7 @@ class GroupedRecipesTableViewController: UITableViewController, UINavigationCont
             }
             let recipe = recipes[indexPath.row]
             
-            
+            recipeViewController.recipeList = self.recipeList
             recipeViewController.recipe = recipe
             recipeViewController.distortedIngredients = recipe.recipeIngredients
             recipeViewController.navigationItem.title = recipe.recipeName
