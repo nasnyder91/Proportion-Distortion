@@ -15,6 +15,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     @IBOutlet weak var groupsTableView: UITableView!
     @IBOutlet weak var addRecipeButton: UIButton!
     @IBOutlet weak var addGroupButton: UIButton!
+    @IBOutlet weak var proportionDistortionLabel: UILabel!
     
     var groups = [Group]()
     var recipeList = AllRecipes()
@@ -22,13 +23,11 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     var recipeSearchResults = [Recipe]()
     let searchResultsTable = UITableViewController()
     var resultsSearchController = UISearchController()
-
-   // @IBOutlet var searchResultsController: UISearchController!
     
     
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidLoad() {
@@ -39,8 +38,8 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         }
         loadGroups()
         organizeGroupsAndRecipes()
-        
-        //searchRecipesBar.delegate = self
+        self.extendedLayoutIncludesOpaqueBars = !(self.navigationController?.navigationBar.isTranslucent)!
+        navigationItem.hidesBackButton = true
         
         self.groupsTableView.delegate = self
         self.groupsTableView.dataSource = self
@@ -52,16 +51,23 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         self.resultsSearchController.searchResultsUpdater = self
         self.resultsSearchController.hidesNavigationBarDuringPresentation = false
         self.resultsSearchController.delegate = self
-        //self.resultsSearchController.loadViewIfNeeded()
+        
         
         let searchBar = resultsSearchController.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search your recipes"
-        navigationItem.titleView = resultsSearchController.searchBar
-        navigationItem.backBarButtonItem?.isEnabled = false
-        //self.groupsTableView.tableHeaderView = resultsSearchController.searchBar
-        resultsSearchController.hidesNavigationBarDuringPresentation = false
-        resultsSearchController.dimsBackgroundDuringPresentation = true
+        self.view.addSubview(searchBar)
+        
+        let searchBarLocation = proportionDistortionLabel.frame.origin.y + proportionDistortionLabel.frame.size.height
+        searchBar.frame.origin.y = searchBarLocation
+        
+        let searchBarBottomAnchor = searchBar.bottomAnchor
+        
+        groupsTableView.topAnchor.constraint(equalTo: searchBarBottomAnchor, constant: 8.0).isActive = true
+
+
+        self.resultsSearchController.hidesNavigationBarDuringPresentation = false
+        self.resultsSearchController.dimsBackgroundDuringPresentation = true
         self.definesPresentationContext = true
     
         
@@ -71,11 +77,31 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func layoutSubview() {
+        
+        self.resultsSearchController = (UISearchController(searchResultsController: searchResultsTable))
+        self.resultsSearchController.searchResultsUpdater = self
+        self.resultsSearchController.hidesNavigationBarDuringPresentation = false
+        self.resultsSearchController.delegate = self
+        
+        
+        let searchBar = resultsSearchController.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search your recipes"
+        self.view.addSubview(searchBar)
+        
+        let searchBarLocation = proportionDistortionLabel.frame.origin.y + proportionDistortionLabel.frame.size.height
+        searchBar.frame.origin.y = searchBarLocation
+        
+        let searchBarBottomAnchor = searchBar.bottomAnchor
+        
+        groupsTableView.topAnchor.constraint(equalTo: searchBarBottomAnchor, constant: 8.0).isActive = true
+        
+        
+        self.resultsSearchController.hidesNavigationBarDuringPresentation = false
+        self.resultsSearchController.dimsBackgroundDuringPresentation = true
+        self.definesPresentationContext = true
     }
-    
     
 //MARK: TableView Data Source
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -129,6 +155,16 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             performSegue(withIdentifier: "ShowSearchedRecipe", sender: searchResultsTable.tableView.cellForRow(at: indexPath))
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if self.resultsSearchController.isActive {
+            return 0
+        }
+        return 35.0
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Recipe Groups"
+    }
 
     
 // MARK: - Navigation
@@ -153,6 +189,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             
             showGroupViewController.recipeList = self.recipeList
             showGroupViewController.recipes = selectedGroup.groupRecipes
+            print(selectedGroup.groupRecipes.count)
             showGroupViewController.navigationItem.title = selectedGroup.groupName
             
         case "AddNewRecipe":
@@ -183,8 +220,21 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             recipeViewController.distortedIngredients = recipe.recipeIngredients
             recipeViewController.navigationItem.title = recipe.recipeName
             
+        case "AddNewGroup": break
+            
+            
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
+        }
+    }
+    
+    @IBAction func unwindToMain(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? AddNewGroupViewController {
+            let recipes = [Recipe]()
+            let newGroupName = sourceViewController.newGroupName
+            let newGroup = Group(groupName: newGroupName!, groupRecipes: recipes)
+            self.groups.append(newGroup)
+            groupsTableView.reloadData()
         }
     }
     
@@ -193,7 +243,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     func filterContentForSearchText(searchText: String) {
         // Filter the array using the filter method
         self.recipeSearchResults = self.recipeList.allRecipes.filter{ (aRecipe: Recipe) -> Bool in
-            /*return*/ aRecipe.recipeName.lowercased().range(of: searchText.lowercased()) != nil
+            aRecipe.recipeName.lowercased().range(of: searchText.lowercased()) != nil
         }
     }
     
@@ -202,6 +252,17 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         self.recipeSearchResults.removeAll(keepingCapacity: false)
         filterContentForSearchText(searchText: searchController.searchBar.text!)
         self.searchResultsTable.tableView.reloadData()
+    }
+    
+    func willPresentSearchController(_ searchController: UISearchController) {
+        self.searchResultsTable.tableView.sizeToFit()
+        self.searchResultsTable.tableView.addSubview(searchController.searchBar)
+    }
+
+    func willDismissSearchController(_ searchController: UISearchController) {
+        print("Dismissed")
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.layoutSubview()
     }
     
 //MARK: Private Methods

@@ -22,6 +22,7 @@
 		CE50DACB1E8C767600AE20A5 /* ProportionDistortionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DACA1E8C767600AE20A5 /* ProportionDistortionViewController.swift */; };
 		CE50DACD1E8C769400AE20A5 /* GroupNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DACC1E8C769400AE20A5 /* GroupNameTableViewCell.swift */; };
 		CE50DAD11E8C7A0F00AE20A5 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50DAD01E8C7A0F00AE20A5 /* Group.swift */; };
+		CE6CE43F1EBFD6A200583706 /* AddNewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6CE43E1EBFD6A200583706 /* AddNewGroupViewController.swift */; };
 		CEE448201E7DEB22009CEE5F /* AddStepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4481F1E7DEB22009CEE5F /* AddStepsTableViewCell.swift */; };
 		CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */; };
 		CEE5FD291E7A04BF00AB16C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE5FD271E7A04BF00AB16C4 /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 		CE50DACA1E8C767600AE20A5 /* ProportionDistortionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProportionDistortionViewController.swift; sourceTree = "<group>"; };
 		CE50DACC1E8C769400AE20A5 /* GroupNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupNameTableViewCell.swift; sourceTree = "<group>"; };
 		CE50DAD01E8C7A0F00AE20A5 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		CE6CE43E1EBFD6A200583706 /* AddNewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewGroupViewController.swift; sourceTree = "<group>"; };
 		CEE4481F1E7DEB22009CEE5F /* AddStepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStepsTableViewCell.swift; sourceTree = "<group>"; };
 		CEE5FD201E7A04BF00AB16C4 /* ProportionDistortion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProportionDistortion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE5FD231E7A04BF00AB16C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				CE50DAC51E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift */,
 				CE50DAC71E8C6DC600AE20A5 /* GroupedRecipesTableViewCell.swift */,
 				CE50DAD01E8C7A0F00AE20A5 /* Group.swift */,
+				CE6CE43E1EBFD6A200583706 /* AddNewGroupViewController.swift */,
 			);
 			name = Groups;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				CE4009EB1E912D7A003A0A48 /* AllRecipes.swift in Sources */,
 				CE50DACD1E8C769400AE20A5 /* GroupNameTableViewCell.swift in Sources */,
 				CE2DB0B11E80A1D4003A0FB1 /* Recipe.swift in Sources */,
+				CE6CE43F1EBFD6A200583706 /* AddNewGroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

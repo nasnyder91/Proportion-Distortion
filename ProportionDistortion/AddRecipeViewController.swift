@@ -168,6 +168,10 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         self.groupsPickerView.isHidden = false
     }
     
+    @IBAction func cancelAdding(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
 //MARK: Private Methods
     private func updateSaveButtonState() {

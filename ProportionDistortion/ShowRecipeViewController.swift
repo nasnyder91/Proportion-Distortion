@@ -24,7 +24,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.isNavigationBarHidden = false
         //Table View delegation and data source
         self.recipeTableView.delegate = self
         self.recipeTableView.dataSource = self
