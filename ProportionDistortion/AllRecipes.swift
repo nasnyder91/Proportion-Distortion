@@ -12,6 +12,9 @@ import os.log
 class AllRecipes {
     var allRecipes = [Recipe]()
     
+    
+    
+    
     func addRecipe(recipe: Recipe...) {
         allRecipes += recipe
         print("Recipe was added at position \(allRecipes.endIndex)")
