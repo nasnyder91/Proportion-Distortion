@@ -154,6 +154,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         if self.resultsSearchController.isActive {
             performSegue(withIdentifier: "ShowSearchedRecipe", sender: searchResultsTable.tableView.cellForRow(at: indexPath))
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -277,11 +278,6 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
                 usedGroups.append(group.groupName)
             }
         }
-        //let soupGroup = Group(groupName: "Soups", groupRecipes: recipes)
-        //let chickenGroup = Group(groupName: "Chicken", groupRecipes: recipes)
-        //let mexicanGroup = Group(groupName: "Mexican", groupRecipes: recipes)
-        
-        //groups += [soupGroup, chickenGroup, mexicanGroup]
     }
     
     private func loadSampleGroupRecipes() {

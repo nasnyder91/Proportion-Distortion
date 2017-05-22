@@ -16,7 +16,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var recipeTableView: UITableView!
     
     var distortPickerView = UIPickerView()
-    let distortChoices: [Double] = [0.25, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let distortChoices: [Double] = [0.25, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     var distortValue: Double?
     var distortedIngredients = [Ingredient]()
     var recipe: Recipe?
@@ -87,7 +87,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
                     print(convertQuantityToDecimal(ingredient: ingredient))
                     
                     
-                    if distortedIngredient.quantity == ingredient.quantity {
+                    if distortedIngredient.quantity == ingredient.quantity && !unitIsMetric(unit: ingredient.unit) {
                         ingredient.quantity = convertQuantityToDecimal(ingredient: ingredient)
                         ingredient.quantity = convertQuantityToFraction(quantity: ingredient.quantity)
                         
@@ -96,10 +96,16 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
                         } else {
                             ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)"
                         }
-                    } else {
+                    } else if !unitIsMetric(unit: ingredient.unit){
                         distortedIngredient.quantity = convertQuantityToDecimal(ingredient: distortedIngredient)
                         distortedIngredient.quantity = convertQuantityToFraction(quantity: distortedIngredient.quantity)
                         
+                        if i < ingredientsList.count-1 {
+                            ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)\n"
+                        } else {
+                            ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)"
+                        }
+                    } else if unitIsMetric(unit: ingredient.unit){
                         if i < ingredientsList.count-1 {
                             ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)\n"
                         } else {
@@ -193,7 +199,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var distortChoiceString: String
-        if distortChoices[row] < 1 {
+        if distortChoices[row] < 1 || String(distortChoices[row]).contains(".5") {
             distortChoiceString = String(distortChoices[row])
         }
         else {
@@ -278,6 +284,14 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
 //MARK: Instance Methods
+    func unitIsMetric(unit: String) -> Bool {
+        if unit == "g" || unit == "ml" {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func distortIngredientsList() {
         let ingredientsList = (recipe?.recipeIngredients)!
         

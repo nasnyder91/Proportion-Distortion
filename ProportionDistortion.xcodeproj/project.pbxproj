@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE25BCAC1ED2564800460931 /* UnitKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25BCAB1ED2564800460931 /* UnitKeyboard.xib */; };
+		CE25BCAE1ED256C100460931 /* UnitKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25BCAD1ED256C100460931 /* UnitKeyboard.swift */; };
 		CE2AACB41E81FED80055B6F3 /* ShowRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2AACB31E81FED80055B6F3 /* ShowRecipeViewController.swift */; };
 		CE2AACB61E81FFF60055B6F3 /* ShowIngredientsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2AACB51E81FFF60055B6F3 /* ShowIngredientsTableViewCell.swift */; };
 		CE2AACB81E8200080055B6F3 /* ShowStepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2AACB71E8200080055B6F3 /* ShowStepsTableViewCell.swift */; };
@@ -45,7 +47,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CEEC4B801ECBC5D000D9A730 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		CE25BCAB1ED2564800460931 /* UnitKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnitKeyboard.xib; sourceTree = "<group>"; };
+		CE25BCAD1ED256C100460931 /* UnitKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitKeyboard.swift; sourceTree = "<group>"; };
 		CE2AACB31E81FED80055B6F3 /* ShowRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowRecipeViewController.swift; sourceTree = "<group>"; };
 		CE2AACB51E81FFF60055B6F3 /* ShowIngredientsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowIngredientsTableViewCell.swift; sourceTree = "<group>"; };
 		CE2AACB71E8200080055B6F3 /* ShowStepsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStepsTableViewCell.swift; sourceTree = "<group>"; };
@@ -208,6 +225,8 @@
 				CEE63AF51E7EDA6500558297 /* IngredientTableViewCell.swift */,
 				CEE63AF91E7EDBD000558297 /* AddIngredientTableViewCell.swift */,
 				CEE63AF71E7EDA7E00558297 /* Ingredient.swift */,
+				CE25BCAB1ED2564800460931 /* UnitKeyboard.xib */,
+				CE25BCAD1ED256C100460931 /* UnitKeyboard.swift */,
 			);
 			name = Ingredients;
 			sourceTree = "<group>";
@@ -222,6 +241,7 @@
 				CEE5FD1C1E7A04BF00AB16C4 /* Sources */,
 				CEE5FD1D1E7A04BF00AB16C4 /* Frameworks */,
 				CEE5FD1E1E7A04BF00AB16C4 /* Resources */,
+				CEEC4B801ECBC5D000D9A730 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -297,6 +317,7 @@
 			files = (
 				CEE5FD2E1E7A04BF00AB16C4 /* LaunchScreen.storyboard in Resources */,
 				CEE5FD2B1E7A04BF00AB16C4 /* Assets.xcassets in Resources */,
+				CE25BCAC1ED2564800460931 /* UnitKeyboard.xib in Resources */,
 				CEE5FD291E7A04BF00AB16C4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +349,7 @@
 				CE37B1641E7DB35F00F89A67 /* StepsTableViewController.swift in Sources */,
 				CE50DAC61E8C6DAB00AE20A5 /* GroupedRecipesTableViewController.swift in Sources */,
 				CEE5FD241E7A04BF00AB16C4 /* AppDelegate.swift in Sources */,
+				CE25BCAE1ED256C100460931 /* UnitKeyboard.swift in Sources */,
 				CE37B15E1E7D9BAD00F89A67 /* AddStepsViewController.swift in Sources */,
 				CE2AACB61E81FFF60055B6F3 /* ShowIngredientsTableViewCell.swift in Sources */,
 				CE2AACB41E81FED80055B6F3 /* ShowRecipeViewController.swift in Sources */,

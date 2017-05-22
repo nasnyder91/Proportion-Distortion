@@ -33,6 +33,8 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     
     var groupsPickerView = UIPickerView()
     var groupChoices = [String]()
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

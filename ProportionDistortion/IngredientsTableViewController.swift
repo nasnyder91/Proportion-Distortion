@@ -16,6 +16,8 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     var ingredients = [Ingredient]()
     
     
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateSavebuttonState()
