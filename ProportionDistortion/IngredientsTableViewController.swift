@@ -154,6 +154,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             os_log("The save button was not pressed, cancelling.", log: OSLog.default, type: .debug)
             return
         }
+        
         for i in 0..<ingredients.count-1 {
             let cellIndex = IndexPath(row: i, section: 0)
             guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {

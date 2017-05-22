@@ -10,14 +10,14 @@ import UIKit
 import os.log
 
 class AllRecipes {
+    
+//MARK: Properties
     var allRecipes = [Recipe]()
     
-    
-    
-    
-    func addRecipe(recipe: Recipe...) {
-        allRecipes += recipe
-        print("Recipe was added at position \(allRecipes.endIndex)")
+//MARK: Functions
+
+    func addRecipe(recipe: Recipe) {
+        allRecipes += [recipe]
     }
     
     func deleteRecipe(recipe: Recipe) {
@@ -29,5 +29,9 @@ class AllRecipes {
                 os_log("The recipe was not in the list of recipes and therefore could not be deleted", log: OSLog.default, type: .debug)
             }
         }
+    }
+    
+    func recipeArray() -> [Recipe] {
+        return allRecipes
     }
 }

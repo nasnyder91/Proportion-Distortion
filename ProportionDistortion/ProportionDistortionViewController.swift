@@ -33,9 +33,12 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if recipeList.allRecipes.count == 0 {
+        if let savedRecipes = loadRecipes() {
+            recipeList.allRecipes = savedRecipes
+        } else {
             loadSampleGroupRecipes()
         }
+        
         loadGroups()
         organizeGroupsAndRecipes()
         self.extendedLayoutIncludesOpaqueBars = !(self.navigationController?.navigationBar.isTranslucent)!
@@ -288,7 +291,12 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         let recipe2 = Recipe(recipeName: "Pee", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Chicken")
         let recipe3 = Recipe(recipeName: "Barf", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Mexican")
         
-        recipeList.addRecipe(recipe: recipe1,recipe2,recipe3)
+        //recipeList.addRecipe(recipe: recipe1)
+        //recipeList.addRecipe(recipe: recipe2)
+        //recipeList.addRecipe(recipe: recipe3)
+        recipeList.allRecipes += [recipe1]
+        recipeList.allRecipes += [recipe2]
+        recipeList.allRecipes += [recipe3]
     }
     
     private func organizeGroupsAndRecipes() {
@@ -299,6 +307,19 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
                 }
             }
         }
+    }
+    
+    func saveRecipes() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recipeList.allRecipes, toFile: Recipe.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Recipes successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save recipes...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadRecipes() -> [Recipe]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Recipe.ArchiveURL.path) as? [Recipe]
     }
 
 }

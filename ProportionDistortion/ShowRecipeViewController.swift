@@ -25,6 +25,14 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
+        
+        if let savedIngredients = loadIngredients() {
+            recipe?.recipeIngredients = savedIngredients
+        }
+        
+        if let savedSteps = loadSteps() {
+            recipe?.recipeSteps = savedSteps
+        }
         //Table View delegation and data source
         self.recipeTableView.delegate = self
         self.recipeTableView.dataSource = self
@@ -248,7 +256,14 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let homeViewController = segue.destination as? ProportionDistortionViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
-            homeViewController.recipeList = self.recipeList!
+            //for i in (self.recipeList?.allRecipes)! {
+                //if i != self.recipe {
+                    homeViewController.recipeList.allRecipes = self.recipeList!.allRecipes
+            
+                    homeViewController.saveRecipes()
+                //}
+            //}
+            
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")
@@ -265,8 +280,10 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             
             self.recipe?.recipeIngredients = ingredients
             self.distortedIngredients = ingredients
+            //self.recipeList?.addRecipe(recipe: self.recipe!)
             
             recipeTableView.reloadData()
+            saveIngredients()
         }
         if let sourceViewController = sender.source as? StepsTableViewController {
             var steps = sourceViewController.steps
@@ -276,6 +293,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             recipe?.recipeSteps = steps
             
             recipeTableView.reloadData()
+            saveSteps()
         }
     }
 
@@ -422,4 +440,29 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         return (numerator + "/" + denominator)
     }
     
+    func saveIngredients() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recipe?.recipeIngredients as Any, toFile: Ingredient.ArchiveURL.path)
+        print("Saved ingredients")
+        if isSuccessfulSave {
+            os_log("Ingredients successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save Ingredients...", log: OSLog.default, type: .error)
+        }
+    }
+    private func loadIngredients() -> [Ingredient]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredient.ArchiveURL.path) as? [Ingredient]
+    }
+    
+    func saveSteps() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recipe?.recipeSteps as Any, toFile: Step.ArchiveURL.path)
+        print("Saved Steps")
+        if isSuccessfulSave {
+            os_log("Steps successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save steps...", log: OSLog.default, type: .error)
+        }
+    }
+    private func loadSteps() -> [Step]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Step.ArchiveURL.path) as? [Step]
+    }
 }

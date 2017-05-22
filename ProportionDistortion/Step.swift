@@ -7,11 +7,23 @@
 //
 
 import UIKit
+import os.log
 
-class Step {
+class Step: NSObject, NSCoding {
     
 //MARK: Properties
     var step: String
+    
+//MARK: Archiving Paths
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("steps")
+    
+//MARK: Types
+    
+    struct PropertyKey {
+        static let step = "step"
+    }
     
 //MARK: Initialization
     init?(step: String) {
@@ -20,4 +32,21 @@ class Step {
         }
         self.step = step
     }
+    
+//MARK: NSCoding
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(step, forKey: PropertyKey.step)
+    }
+    
+    required convenience init?(coder aDecoder: NSCoder) {
+        
+        guard let step = aDecoder.decodeObject(forKey: PropertyKey.step) as? String else {
+            os_log("Unable to decode the step from step Object.", log: OSLog.default, type: .debug)
+            return nil
+        }
+        
+        self.init(step: step)
+    }
+    
 }
