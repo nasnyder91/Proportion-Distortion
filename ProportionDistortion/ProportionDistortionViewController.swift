@@ -38,7 +38,6 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             recipeList.allRecipes = savedRecipes
         } else {
             loadSampleGroupRecipes()
-            //organizeGroupsAndRecipes()
         }
 
         if let savedGroups = loadGroups() {
@@ -46,9 +45,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             groups = savedGroups
         } else {
             loadSampleGroups()
-            //organizeGroupsAndRecipes()
         }
-        organizeGroupsAndRecipes()
         
         
         self.extendedLayoutIncludesOpaqueBars = !(self.navigationController?.navigationBar.isTranslucent)!
@@ -328,23 +325,13 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         let ingredients = [Ingredient]()
         let steps = [Step]()
         
-        let recipe1 = Recipe(recipeName: "Poo", recipeIngredients: ingredients , recipeSteps: steps, recipeGroup: "Soups")
-        let recipe2 = Recipe(recipeName: "Pee", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Chicken")
-        let recipe3 = Recipe(recipeName: "Barf", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Mexican")
+        let recipe1 = Recipe(recipeName: "Butternut Squash", recipeIngredients: ingredients , recipeSteps: steps, recipeGroup: "Soups")
+        let recipe2 = Recipe(recipeName: "Seseme Ginger Chicken", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Chicken")
+        let recipe3 = Recipe(recipeName: "Steak Tacos", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Mexican")
 
         recipeList.allRecipes += [recipe1]
         recipeList.allRecipes += [recipe2]
         recipeList.allRecipes += [recipe3]
-    }
-    
-    func organizeGroupsAndRecipes() {
-     //   for r in recipeList.allRecipes {
-      //      for i in 0..<groups.count {
-       //         if r.recipeGroup == groups[i] && !(groups[i].groupRecipes.contains(r)) {
-         //           groups[i].groupRecipes.append(r)
-         //       }
-       //     }
-      //  }
     }
     
     func saveRecipes() {

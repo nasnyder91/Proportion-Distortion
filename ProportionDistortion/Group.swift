@@ -11,8 +11,7 @@ import os.log
 
 class Group: NSObject, NSCoding {
     
-    var groupName: String
-    var groupRecipes: [Recipe]
+    var groupNames: [String]?
     
 //MARK: Archiving Paths
     
@@ -22,35 +21,28 @@ class Group: NSObject, NSCoding {
 //MARK: Types
     
     struct PropertyKey {
-        static let name = "name"
-        static let recipes = "recipes"
+        static let groups = "groups"
     }
     
 //MARK: Initialization
-    init(groupName: String, groupRecipes: [Recipe]) {
-        self.groupName = groupName
-        self.groupRecipes = groupRecipes
+    init(groupNames: [String]) {
+        self.groupNames = groupNames
     }
     
 //MARK: NSCoding
     
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(groupName, forKey: PropertyKey.name)
-        aCoder.encode(groupRecipes, forKey: PropertyKey.recipes)
+        aCoder.encode(groupNames, forKey: PropertyKey.groups)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         
-        guard let name = aDecoder.decodeObject(forKey: PropertyKey.name) as? String else {
+        guard let groups = aDecoder.decodeObject(forKey: PropertyKey.groups) as? [String] else {
             os_log("Unable to decode the name from group object.", log: OSLog.default, type: .debug)
             return nil
         }
-        guard let recipes = aDecoder.decodeObject(forKey: PropertyKey.recipes) as? [Recipe] else {
-            os_log("Unable to decode the recipes from group object.", log: OSLog.default, type: .debug)
-            return nil
-        }
         
-        self.init(groupName: name, groupRecipes: recipes)
+        self.init(groupNames: groups)
     }
     
 }
