@@ -17,7 +17,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     @IBOutlet weak var addGroupButton: UIButton!
     @IBOutlet weak var proportionDistortionLabel: UILabel!
     
-    var groups = [Group]()
+    var groups = [String]()
     var recipeList = AllRecipes()
     
     var recipeSearchResults = [Recipe]()
@@ -34,13 +34,23 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         super.viewDidLoad()
         
         if let savedRecipes = loadRecipes() {
+            print("loading recipes")
             recipeList.allRecipes = savedRecipes
         } else {
             loadSampleGroupRecipes()
+            //organizeGroupsAndRecipes()
         }
-        
-        loadGroups()
+
+        if let savedGroups = loadGroups() {
+            print("loading groups")
+            groups = savedGroups
+        } else {
+            loadSampleGroups()
+            //organizeGroupsAndRecipes()
+        }
         organizeGroupsAndRecipes()
+        
+        
         self.extendedLayoutIncludesOpaqueBars = !(self.navigationController?.navigationBar.isTranslucent)!
         navigationItem.hidesBackButton = true
         
@@ -138,7 +148,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             }
         } else {
             for g in groups {
-                cellTitles.append(g.groupName)
+                cellTitles.append(g)
             }
         }
         
@@ -190,11 +200,18 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             }
             
             let selectedGroup = groups[indexPath.row]
+            var recipes = [Recipe]()
             
             showGroupViewController.recipeList = self.recipeList
-            showGroupViewController.recipes = selectedGroup.groupRecipes
-            print(selectedGroup.groupRecipes.count)
-            showGroupViewController.navigationItem.title = selectedGroup.groupName
+            
+            for r in recipeList.allRecipes{
+                if r.recipeGroup == selectedGroup {
+                    recipes += [r]
+                }
+            }
+            showGroupViewController.recipes = recipes
+
+            showGroupViewController.navigationItem.title = selectedGroup
             
         case "AddNewRecipe":
             os_log("Adding a new recipe", log: OSLog.default, type: .debug)
@@ -234,11 +251,21 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     
     @IBAction func unwindToMain(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? AddNewGroupViewController {
-            let recipes = [Recipe]()
             let newGroupName = sourceViewController.newGroupName
-            let newGroup = Group(groupName: newGroupName!, groupRecipes: recipes)
-            self.groups.append(newGroup)
+            self.groups.append(newGroupName!)
             groupsTableView.reloadData()
+            saveGroups()
+        }
+        if let sourceViewController = sender.source as? ShowRecipeViewController {
+            recipeList.allRecipes = (sourceViewController.recipeList?.allRecipes)!
+            
+            
+            //for g in groups {
+            //    if g == sourceViewController.recipe?.recipeGroup {
+            //        g.groupRecipes.append(sourceViewController.recipe!)
+            //    }
+            //}
+            saveRecipes()
         }
     }
     
@@ -270,7 +297,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     }
     
 //MARK: Private Methods
-    private func loadGroups() {
+    /*private func loadSampleGroups() {
         let recipes = [Recipe]()
         var usedGroups = [String]()
         
@@ -281,32 +308,43 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
                 usedGroups.append(group.groupName)
             }
         }
+    }*/
+    
+    private func loadSampleGroups() {
+        //let recipes = [Recipe]()
+        //let group1 = Group(groupName: "Soups", groupRecipes: recipes)
+        //let group2 = Group(groupName: "Chicken", groupRecipes: recipes)
+        //let group3 = Group(groupName: "Mexican", groupRecipes: recipes)
+        let group1 = "Soups"
+        let group2 = "Chicken"
+        let group3 = "Mexican"
+        
+        
+        groups += [group1,group2,group3]
     }
     
     private func loadSampleGroupRecipes() {
+        print("loading sample recipes")
         let ingredients = [Ingredient]()
         let steps = [Step]()
         
         let recipe1 = Recipe(recipeName: "Poo", recipeIngredients: ingredients , recipeSteps: steps, recipeGroup: "Soups")
         let recipe2 = Recipe(recipeName: "Pee", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Chicken")
         let recipe3 = Recipe(recipeName: "Barf", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Mexican")
-        
-        //recipeList.addRecipe(recipe: recipe1)
-        //recipeList.addRecipe(recipe: recipe2)
-        //recipeList.addRecipe(recipe: recipe3)
+
         recipeList.allRecipes += [recipe1]
         recipeList.allRecipes += [recipe2]
         recipeList.allRecipes += [recipe3]
     }
     
-    private func organizeGroupsAndRecipes() {
-        for r in recipeList.allRecipes {
-            for i in 0..<groups.count {
-                if r.recipeGroup == groups[i].groupName {
-                    groups[i].groupRecipes.append(r)
-                }
-            }
-        }
+    func organizeGroupsAndRecipes() {
+     //   for r in recipeList.allRecipes {
+      //      for i in 0..<groups.count {
+       //         if r.recipeGroup == groups[i] && !(groups[i].groupRecipes.contains(r)) {
+         //           groups[i].groupRecipes.append(r)
+         //       }
+       //     }
+      //  }
     }
     
     func saveRecipes() {
@@ -320,6 +358,19 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     
     private func loadRecipes() -> [Recipe]? {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Recipe.ArchiveURL.path) as? [Recipe]
+    }
+    
+    func saveGroups() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(groups, toFile: Group.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Groups successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save groups...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadGroups() -> [String]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Group.ArchiveURL.path) as? [String]
     }
 
 }

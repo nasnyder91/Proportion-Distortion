@@ -29,7 +29,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     var ingredients = [Ingredient]()
     var group = ""
     var recipeList: AllRecipes?
-    var groupsList: [Group]?
+    var groupsList: [String]?
     
     var groupsPickerView = UIPickerView()
     var groupChoices = [String]()
@@ -42,7 +42,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         recipeNameTextField.delegate = self
         
         for i in 0..<(groupsList?.count ?? 0) {
-            groupChoices.append((groupsList?[i].groupName)!)
+            groupChoices.append((groupsList?[i])!)
         }
         
         self.groupsPickerView.delegate = self
@@ -129,20 +129,21 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         }
         
         if let button = sender as? UIBarButtonItem, button === saveButton {
-            guard let destinationViewController = segue.destination as? UINavigationController else {
+            guard let recipeViewController = segue.destination as? ShowRecipeViewController else {
                 fatalError("Segue did not point to ShowRecipeViewController")
             }
             name = recipeNameTextField.text ?? ""
             recipe = Recipe(recipeName: name!, recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: group)
-            guard let recipeViewController = destinationViewController.viewControllers.first as? ShowRecipeViewController else {
-                fatalError("nav controller does not present show recipe view controller")
-            }
 
             recipeViewController.recipe = recipe
             recipeViewController.distortedIngredients = ingredients
             recipeViewController.navigationItem.title = name
-            recipeList?.addRecipe(recipe: recipe!)
+            recipeList?.allRecipes += [recipe!]
             recipeViewController.recipeList = self.recipeList
+            recipeViewController.cameFromAdd = true
+            
+            
+            recipeViewController.navigationItem.setHidesBackButton(true, animated: false)
         }
     }
  
