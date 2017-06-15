@@ -33,6 +33,21 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+
+        
+        self.view.backgroundColor = UIColor.black
+        self.proportionDistortionLabel.textColor = UIColor.red
+        self.groupsTableView.backgroundColor = UIColor.black
+        self.groupsTableView.separatorColor = UIColor.blue
+        self.addRecipeButton.backgroundColor = UIColor.blue
+        self.addRecipeButton.tintColor = UIColor.black
+        self.addGroupButton.backgroundColor = UIColor.blue
+        self.addGroupButton.tintColor = UIColor.black
+        
+        self.proportionDistortionLabel.font = UIFont(name: "MarkerFelt-Thin", size: 36.0)
+        
         if let savedRecipes = loadRecipes() {
             print("loading recipes")
             recipeList.allRecipes = savedRecipes
@@ -67,6 +82,11 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         searchBar.sizeToFit()
         searchBar.placeholder = "Search your recipes"
         self.view.addSubview(searchBar)
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.backgroundColor = UIColor.black
+        searchBar.barTintColor = UIColor.black
+        searchBar.layer.borderColor = UIColor.blue.cgColor
+        searchBar.layer.borderWidth = 6
         
         let searchBarLocation = proportionDistortionLabel.frame.origin.y + proportionDistortionLabel.frame.size.height
         searchBar.frame.origin.y = searchBarLocation
@@ -98,6 +118,11 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         let searchBar = resultsSearchController.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "Search your recipes"
+        let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.backgroundColor = UIColor.black
+        searchBar.barTintColor = UIColor.black
+        searchBar.layer.borderColor = UIColor.blue.cgColor
+        searchBar.layer.borderWidth = 1
         self.view.addSubview(searchBar)
         
         let searchBarLocation = proportionDistortionLabel.frame.origin.y + proportionDistortionLabel.frame.size.height
@@ -176,7 +201,12 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Recipe Groups"
     }
-
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.black
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.blue
+    }
     
 // MARK: - Navigation
 
@@ -257,11 +287,7 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             recipeList.allRecipes = (sourceViewController.recipeList?.allRecipes)!
             
             
-            //for g in groups {
-            //    if g == sourceViewController.recipe?.recipeGroup {
-            //        g.groupRecipes.append(sourceViewController.recipe!)
-            //    }
-            //}
+        
             saveRecipes()
         }
     }
@@ -294,28 +320,11 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     }
     
 //MARK: Private Methods
-    /*private func loadSampleGroups() {
-        let recipes = [Recipe]()
-        var usedGroups = [String]()
-        
-        for i in 0..<recipeList.allRecipes.count {
-            if !(usedGroups.contains(recipeList.allRecipes[i].recipeGroup)) {
-                let group = Group(groupName: recipeList.allRecipes[i].recipeGroup, groupRecipes: recipes)
-                groups += [group]
-                usedGroups.append(group.groupName)
-            }
-        }
-    }*/
     
     private func loadSampleGroups() {
-        //let recipes = [Recipe]()
-        //let group1 = Group(groupName: "Soups", groupRecipes: recipes)
-        //let group2 = Group(groupName: "Chicken", groupRecipes: recipes)
-        //let group3 = Group(groupName: "Mexican", groupRecipes: recipes)
         let group1 = "Soups"
         let group2 = "Chicken"
         let group3 = "Mexican"
-        
         
         groups += [group1,group2,group3]
     }

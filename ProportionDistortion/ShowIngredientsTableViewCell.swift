@@ -16,6 +16,10 @@ class ShowIngredientsTableViewCell: UITableViewCell, UITextViewDelegate {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.backgroundColor = UIColor.black
+        self.ingredientsTextView.backgroundColor = UIColor.clear
+        self.ingredientsTextView.textColor = UIColor.blue
         // Initialization code
     }
 

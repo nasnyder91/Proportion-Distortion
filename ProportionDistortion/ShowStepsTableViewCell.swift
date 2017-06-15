@@ -16,6 +16,10 @@ class ShowStepsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.backgroundColor = UIColor.black
+        self.stepsTextView.backgroundColor = UIColor.clear
+        self.stepsTextView.textColor = UIColor.blue
         // Initialization code
     }
 

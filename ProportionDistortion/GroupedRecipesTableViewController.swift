@@ -18,6 +18,11 @@ class GroupedRecipesTableViewController: UITableViewController, UINavigationCont
         super.viewDidLoad()
 
         self.navigationController?.isNavigationBarHidden = false
+        
+        self.tableView.backgroundColor = UIColor.black
+        self.tableView.separatorColor = UIColor.blue
+        
+                       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -115,6 +120,16 @@ class GroupedRecipesTableViewController: UITableViewController, UINavigationCont
             recipeViewController.recipe = recipe
             recipeViewController.distortedIngredients = recipe.recipeIngredients
             recipeViewController.navigationItem.title = recipe.recipeName
+            
+        case "AddNewGroupRecipe":
+            guard let addRecipeNavController = segue.destination as? UINavigationController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let addRecipeViewController = addRecipeNavController.viewControllers.first as? AddRecipeViewController else {
+                fatalError("Nav controller is not presenting AddRecipeViewController")
+            }
+            addRecipeViewController.recipeList = self.recipeList
+            addRecipeViewController.groupsList = [self.navigationItem.title!]
             
         default:
             fatalError("Unexpected segue identifier: \(segue.identifier)")

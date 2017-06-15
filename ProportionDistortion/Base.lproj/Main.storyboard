@@ -584,12 +584,18 @@
                             <outlet property="delegate" destination="Vrg-po-ErS" id="Gsp-9j-ZvX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Group Recipes" id="Qky-4w-5eZ"/>
+                    <navigationItem key="navigationItem" title="Group Recipes" id="Qky-4w-5eZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UZp-7Y-1Fv">
+                            <connections>
+                                <segue destination="chV-M9-GjB" kind="presentation" identifier="AddNewGroupRecipe" id="Rgt-ug-Za1"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TVr-sm-5iX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5780" y="-2042"/>
+            <point key="canvasLocation" x="5863" y="-2042"/>
         </scene>
         <!--Recipe Name-->
         <scene sceneID="UpN-Pg-zY6">
@@ -626,7 +632,7 @@
                                                                         <constraint firstAttribute="height" constant="21" id="mC1-Ah-2JD"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OQw-cE-oah">
@@ -679,7 +685,7 @@
                                                                         <constraint firstAttribute="height" constant="21" id="zJ5-AR-VXL"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
+                                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V7f-my-2gl">
@@ -1066,8 +1072,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="rF6-go-pOp"/>
         <segue reference="xgP-aa-LcI"/>
+        <segue reference="s3Y-MS-xT9"/>
+        <segue reference="EEB-Bd-5h0"/>
         <segue reference="obL-ba-lhc"/>
     </inferredMetricsTieBreakers>
 </document>

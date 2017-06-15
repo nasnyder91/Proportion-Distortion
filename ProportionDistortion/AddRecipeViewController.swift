@@ -38,6 +38,15 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+        
+        self.view.backgroundColor = UIColor.black
+        self.ingredientsAddedLabel.textColor = UIColor.blue
+        self.stepsAddedLabel.textColor = UIColor.blue
+        self.recipeGroupLabel.textColor = UIColor.blue
+
 
         recipeNameTextField.delegate = self
         

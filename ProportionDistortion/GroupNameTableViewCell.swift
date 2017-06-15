@@ -16,6 +16,9 @@ class GroupNameTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.backgroundColor = UIColor.black
+        self.groupLabel.textColor = UIColor.white
         // Initialization code
     }
 

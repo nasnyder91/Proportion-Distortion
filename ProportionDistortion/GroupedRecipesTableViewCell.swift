@@ -17,6 +17,8 @@ class GroupedRecipesTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = UIColor.black
+        self.RecipeNameLabel.textColor = UIColor.blue
         // Initialization code
     }
 

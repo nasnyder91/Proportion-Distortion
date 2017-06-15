@@ -28,14 +28,13 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         
-        /*
-        if let savedIngredients = loadIngredients() {
-            recipe?.recipeIngredients = savedIngredients
-        }
+        self.view.backgroundColor = UIColor.black
+        self.recipeTableView.backgroundColor = UIColor.black
+        self.recipeTableView.separatorColor = UIColor.blue
         
-        if let savedSteps = loadSteps() {
-            recipe?.recipeSteps = savedSteps
-        }*/
+        self.distortPickerView.backgroundColor = UIColor.darkGray
+        
+        
         //Table View delegation and data source
         self.recipeTableView.delegate = self
         self.recipeTableView.dataSource = self
