@@ -4,7 +4,7 @@
 //
 //  Created by Dingy Pumba on 3/21/17.
 //  Copyright © 2017 Nick Snyder. All rights reserved.
-//
+
 
 import UIKit
 import os.log
@@ -431,30 +431,4 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         return (numerator + "/" + denominator)
     }
-    /*
-    func saveIngredients() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recipe?.recipeIngredients as Any, toFile: Ingredient.ArchiveURL.path)
-        print("Saved ingredients")
-        if isSuccessfulSave {
-            os_log("Ingredients successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save Ingredients...", log: OSLog.default, type: .error)
-        }
-    }
-    private func loadIngredients() -> [Ingredient]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredient.ArchiveURL.path) as? [Ingredient]
-    }
-    
-    func saveSteps() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(recipe?.recipeSteps as Any, toFile: Step.ArchiveURL.path)
-        print("Saved Steps")
-        if isSuccessfulSave {
-            os_log("Steps successfully saved.", log: OSLog.default, type: .debug)
-        } else {
-            os_log("Failed to save steps...", log: OSLog.default, type: .error)
-        }
-    }
-    private func loadSteps() -> [Step]? {
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Step.ArchiveURL.path) as? [Step]
-    }*/
 }

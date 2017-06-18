@@ -24,7 +24,6 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     let searchResultsTable = UITableViewController()
     var resultsSearchController = UISearchController()
     
-    
 
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
@@ -33,13 +32,15 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.view.isOpaque = false
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
 
         
-        self.view.backgroundColor = UIColor.black
-        self.proportionDistortionLabel.textColor = UIColor.red
-        self.groupsTableView.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
+        self.proportionDistortionLabel.textColor = UIColor(red: 225.0/255.0, green: 60.0/255.0, blue: 0/255.0, alpha: 1.0)
+        self.groupsTableView.backgroundColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
         self.groupsTableView.separatorColor = UIColor.blue
         self.addRecipeButton.backgroundColor = UIColor.blue
         self.addRecipeButton.tintColor = UIColor.black
@@ -83,9 +84,10 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         searchBar.placeholder = "Search your recipes"
         self.view.addSubview(searchBar)
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.backgroundColor = UIColor.black
-        searchBar.barTintColor = UIColor.black
-        searchBar.layer.borderColor = UIColor.blue.cgColor
+        textFieldInsideSearchBar?.backgroundColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
+        textFieldInsideSearchBar?.font = UIFont(name: "ChalkboardSE-Regular", size: 12.0)
+        searchBar.barTintColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
+        searchBar.layer.borderColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0).cgColor
         searchBar.layer.borderWidth = 6
         
         let searchBarLocation = proportionDistortionLabel.frame.origin.y + proportionDistortionLabel.frame.size.height
@@ -119,10 +121,10 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
         searchBar.sizeToFit()
         searchBar.placeholder = "Search your recipes"
         let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.backgroundColor = UIColor.black
-        searchBar.barTintColor = UIColor.black
-        searchBar.layer.borderColor = UIColor.blue.cgColor
-        searchBar.layer.borderWidth = 1
+        textFieldInsideSearchBar?.backgroundColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
+        searchBar.barTintColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
+        searchBar.layer.borderColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0).cgColor
+        searchBar.layer.borderWidth = 6
         self.view.addSubview(searchBar)
         
         let searchBarLocation = proportionDistortionLabel.frame.origin.y + proportionDistortionLabel.frame.size.height
@@ -203,9 +205,10 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor.black
+        view.tintColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.blue
+        header.textLabel?.font = UIFont(name: "ChalkboardSE-Regular", size: 16.0)
     }
     
 // MARK: - Navigation
@@ -230,12 +233,16 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
             var recipes = [Recipe]()
             
             showGroupViewController.recipeList = self.recipeList
-            
-            for r in recipeList.allRecipes{
-                if r.recipeGroup == selectedGroup {
-                    recipes += [r]
+            if selectedGroup == "All Recipes" {
+                recipes = self.recipeList.allRecipes
+            } else {
+                for r in recipeList.allRecipes{
+                    if r.recipeGroup == selectedGroup {
+                        recipes += [r]
+                    }
                 }
             }
+            
             showGroupViewController.recipes = recipes
 
             showGroupViewController.navigationItem.title = selectedGroup
@@ -322,11 +329,12 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
 //MARK: Private Methods
     
     private func loadSampleGroups() {
+        let allRecipesGroup = "All Recipes"
         let group1 = "Soups"
         let group2 = "Chicken"
         let group3 = "Mexican"
         
-        groups += [group1,group2,group3]
+        groups += [allRecipesGroup,group1,group2,group3]
     }
     
     private func loadSampleGroupRecipes() {
@@ -368,5 +376,4 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     private func loadGroups() -> [String]? {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Group.ArchiveURL.path) as? [String]
     }
-
 }
