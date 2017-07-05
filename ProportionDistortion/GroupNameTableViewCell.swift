@@ -17,9 +17,9 @@ class GroupNameTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.backgroundColor = UIColor(red: 231.0/255.0, green: 250.0/255.0, blue: 133.0/255.0, alpha: 1.0)
+        self.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
         self.groupLabel.textColor = UIColor.black
-        self.groupLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 14.0)
+        self.groupLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 24.0)
         // Initialization code
     }
 

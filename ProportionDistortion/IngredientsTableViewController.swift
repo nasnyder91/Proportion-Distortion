@@ -25,7 +25,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
         loadAddCell()
         
         updateSavebuttonState()
@@ -67,7 +67,17 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             cell.unitTextField.text = ingredient.unit
             cell.ingredientTextField.text = ingredient.ingredient
             
+            cell.quantityTextField.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+            cell.unitTextField.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+            cell.ingredientTextField.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+            
+            cell.quantityTextField.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+            cell.unitTextField.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+            cell.ingredientTextField.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+            
             cell.selectionStyle = UITableViewCellSelectionStyle.none
+            
+            cell.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
             
             return cell
         } else {
@@ -78,6 +88,9 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             let addIngredient = ingredients[indexPath.row]
             
             cell.addNewIngredientLabel.text = addIngredient.ingredient
+            cell.addNewIngredientLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+            
+            cell.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
             
             return cell
         }
@@ -141,9 +154,13 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         
         return true
     }
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+    //func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+    //    updateSavebuttonState()
+    //}
+    @IBAction func textFieldDidChange(_ sender: UITextField) {
         updateSavebuttonState()
     }
+    
     
     
 // MARK: - Navigation
@@ -207,8 +224,9 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             }
             let ingredientText = ingredientCell.ingredientTextField.text ?? ""
             
-            if ingredientText.isEmpty {
+            if ingredientText.isEmpty || ingredientText == "" {
                 saveButton.isEnabled = false
+                return
             } else {
                 saveButton.isEnabled = true
             }

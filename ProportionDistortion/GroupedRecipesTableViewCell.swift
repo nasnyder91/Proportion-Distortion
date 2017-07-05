@@ -17,8 +17,9 @@ class GroupedRecipesTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.black
-        self.RecipeNameLabel.textColor = UIColor.blue
+        self.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.RecipeNameLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 24.0)
+        self.RecipeNameLabel.textColor = UIColor.black
         // Initialization code
     }
 

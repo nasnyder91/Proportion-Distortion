@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UIAlertViewDelegate {
     
 //MARK: Properties
     @IBOutlet weak var recipeNameTextField: UITextField!
@@ -39,13 +39,36 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+        let customCancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelAdding(_:)))
         
-        self.view.backgroundColor = UIColor.black
-        self.ingredientsAddedLabel.textColor = UIColor.blue
-        self.stepsAddedLabel.textColor = UIColor.blue
-        self.recipeGroupLabel.textColor = UIColor.blue
+        self.navigationItem.leftBarButtonItem = customCancel
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red: 225.0/255.0, green: 60.0/255.0, blue: 0/255.0, alpha: 1.0), NSFontAttributeName: UIFont(name: "ChalkboardSE-Regular", size: 22)!]
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 29.0/255.0, green: 55.0/255.0, blue: 3.0/255.0, alpha: 1.0)
+
+        
+        self.view.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.ingredientsAddedLabel.textColor = UIColor.gray
+        self.ingredientsAddedLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+        
+        self.stepsAddedLabel.textColor = UIColor.gray
+        self.stepsAddedLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+        
+        self.recipeGroupLabel.textColor = UIColor.gray
+        self.recipeGroupLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+        
+        self.recipeNameTextField.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.recipeNameTextField.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+        
+        self.addIngredientsButton.setTitleColor(UIColor(red: 29.0/255.0, green: 55.0/255.0, blue: 3.0/255.0, alpha: 1.0), for: .normal)
+        self.addIngredientsButton.titleLabel?.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+        
+        self.addStepsButton.setTitleColor(UIColor(red: 29.0/255.0, green: 55.0/255.0, blue: 3.0/255.0, alpha: 1.0), for: .normal)
+        self.addStepsButton.titleLabel?.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+        
+        self.addGroupButton.setTitleColor(UIColor(red: 29.0/255.0, green: 55.0/255.0, blue: 3.0/255.0, alpha: 1.0), for: .normal)
+        self.addGroupButton.titleLabel?.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+        
 
 
         recipeNameTextField.delegate = self
@@ -53,6 +76,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
         for i in 0..<(groupsList?.count ?? 0) {
             groupChoices.append((groupsList?[i])!)
         }
+        
         
         self.groupsPickerView.delegate = self
         self.groupsPickerView.dataSource = self
@@ -82,8 +106,11 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         name = textField.text
-        updateSaveButtonState()
+        //updateSaveButtonState()
         return true
+    }
+    @IBAction func textFieldDidChange(_ sender: UITextField) {
+        updateSaveButtonState()
     }
     
 //MARK: UIPickerViewDelegate and DataSource
@@ -150,6 +177,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
             recipeList?.allRecipes += [recipe!]
             recipeViewController.recipeList = self.recipeList
             recipeViewController.cameFromAdd = true
+            recipeViewController.allGroups = groupsList!
             
             
             recipeViewController.navigationItem.setHidesBackButton(true, animated: false)
@@ -181,18 +209,33 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UINavigati
     }
     
     @IBAction func cancelAdding(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(title: "Cancel this recipe?", message: "You will lose all recipe information.\nDo you wish to continue?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes, Cancel Recipe", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No, Continue Recipe", style: UIAlertActionStyle.cancel, handler: { (action: UIAlertAction!) in
+            return
+        }))
+        
+        present(alert, animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
     }
     
     
 //MARK: Private Methods
     private func updateSaveButtonState() {
         let name = recipeNameTextField.text ?? ""
-        let ingredients = ingredientsAddedLabel.text
-        let steps = stepsAddedLabel.text
-        let group = recipeGroupLabel.text ?? ""
-        
+        //let ingredients = ingredientsAddedLabel.text
+        //let steps = stepsAddedLabel.text
+        //let group = recipeGroupLabel.text ?? ""
+        /*
         if !name.isEmpty && !group.isEmpty && ingredients![ingredients!.startIndex] != "0" && steps![steps!.startIndex] != "0" {
+            saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
+        }*/
+        if !name.isEmpty {
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false

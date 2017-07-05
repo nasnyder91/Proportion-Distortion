@@ -19,6 +19,8 @@ class StepsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        
         //Automatically adjust cells to fit textview size
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -60,6 +62,9 @@ class StepsTableViewController: UITableViewController {
             // Configure the cell...
             
             cell.step.text = "Step \(indexPath.row + 1): " + step.step
+            cell.step.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+            
+            cell.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
             
             return cell
             
@@ -73,6 +78,10 @@ class StepsTableViewController: UITableViewController {
             // Configure the cell...
             
             cell.step.text = step.step
+            cell.step.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+            cell.step.textColor = UIColor.gray
+            
+            cell.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
             
             return cell
         }
@@ -141,7 +150,7 @@ class StepsTableViewController: UITableViewController {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
             guard let selectedStepCell = sender as? StepsTableViewCell else {
-                fatalError("Unexpected sender: \(sender)")
+                fatalError("Unexpected sender: \(String(describing: sender))")
             }
             guard let indexPath = tableView.indexPath(for: selectedStepCell) else {
                 fatalError("Selected cell not displayed in table")
@@ -152,7 +161,7 @@ class StepsTableViewController: UITableViewController {
             addStepViewController.step = selectedStep
             
         default:
-            fatalError("Unexpected Segue identifier: \(segue.identifier)")
+            fatalError("Unexpected Segue identifier: \(String(describing: segue.identifier))")
         }
         
     }

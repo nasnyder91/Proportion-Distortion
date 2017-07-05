@@ -24,28 +24,36 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lep-RO-NFT">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <state key="normal" title="Cup"/>
+                                    <state key="normal" title="Cup">
+                                        <color key="titleColor" red="0.11372549019607843" green="0.21568627450980393" blue="0.011764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="TDa-zg-0N8"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dY1-rr-het">
                                     <rect key="frame" x="48" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Tbsp"/>
+                                    <state key="normal" title="Tbsp">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="gpw-uO-Mx9"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6To-sr-pv1">
                                     <rect key="frame" x="96" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Tsp"/>
+                                    <state key="normal" title="Tsp">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="LMf-ko-9XR"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WG5-x6-14k">
                                     <rect key="frame" x="144" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Lb"/>
+                                    <state key="normal" title="Lb">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="6IS-pd-XKc"/>
                                     </connections>
@@ -60,28 +68,36 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80j-df-0EX">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Oz"/>
+                                    <state key="normal" title="Oz">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="5Zy-rJ-9Up"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zh6-pK-0qH">
                                     <rect key="frame" x="48" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="g"/>
+                                    <state key="normal" title="g">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="pmL-2V-oPC"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0g6-Q3-nOb">
                                     <rect key="frame" x="96" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Pint"/>
+                                    <state key="normal" title="Pint">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="Ms4-yr-bmp"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWF-hi-b8F">
                                     <rect key="frame" x="144" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Quart"/>
+                                    <state key="normal" title="Quart">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="EQg-Ww-VF7"/>
                                     </connections>
@@ -96,28 +112,36 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ky-SI-sPa">
                                     <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="ml"/>
+                                    <state key="normal" title="ml">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="fEK-p2-4x2"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPz-Ar-Ljc">
                                     <rect key="frame" x="48" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Pinch"/>
+                                    <state key="normal" title="Pinch">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="uTo-vK-Ldo"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kyn-r8-UAa">
                                     <rect key="frame" x="96" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Dash"/>
+                                    <state key="normal" title="Dash">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="iOv-E0-GA3"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnf-SZ-rcm">
                                     <rect key="frame" x="144" y="0.0" width="40" height="30"/>
-                                    <state key="normal" title="Can"/>
+                                    <state key="normal" title="Can">
+                                        <color key="titleColor" red="0.1137254902" green="0.2156862745" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="noB-AE-lX9"/>
                                     </connections>
@@ -131,7 +155,9 @@
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJ3-HC-nTn">
                     <rect key="frame" x="208" y="8" width="45" height="30"/>
-                    <state key="normal" title="Delete"/>
+                    <state key="normal" title="Delete">
+                        <color key="titleColor" red="0.88235294117647056" green="0.23529411764705882" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                     <connections>
                         <action selector="keyTappedWithSender:" destination="-1" eventType="touchUpInside" id="V8M-zi-caY"/>
                     </connections>

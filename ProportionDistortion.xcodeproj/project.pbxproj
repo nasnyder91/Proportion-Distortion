@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE07C7361F0C2049006FA5E8 /* SegueFromLeft.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE07C7351F0C2049006FA5E8 /* SegueFromLeft.swift */; };
 		CE25BCAC1ED2564800460931 /* UnitKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE25BCAB1ED2564800460931 /* UnitKeyboard.xib */; };
 		CE25BCAE1ED256C100460931 /* UnitKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE25BCAD1ED256C100460931 /* UnitKeyboard.swift */; };
 		CE2AACB41E81FED80055B6F3 /* ShowRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2AACB31E81FED80055B6F3 /* ShowRecipeViewController.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CE07C7351F0C2049006FA5E8 /* SegueFromLeft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueFromLeft.swift; sourceTree = "<group>"; };
 		CE25BCAB1ED2564800460931 /* UnitKeyboard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnitKeyboard.xib; sourceTree = "<group>"; };
 		CE25BCAD1ED256C100460931 /* UnitKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitKeyboard.swift; sourceTree = "<group>"; };
 		CE2AACB31E81FED80055B6F3 /* ShowRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowRecipeViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				CE50DACA1E8C767600AE20A5 /* ProportionDistortionViewController.swift */,
 				CE50DACC1E8C769400AE20A5 /* GroupNameTableViewCell.swift */,
+				CE07C7351F0C2049006FA5E8 /* SegueFromLeft.swift */,
 			);
 			name = "Main Page";
 			sourceTree = "<group>";
@@ -282,7 +285,8 @@
 				TargetAttributes = {
 					CEE5FD1F1E7A04BF00AB16C4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = LNPQG4D7M5;
+						ProvisioningStyle = Manual;
 					};
 					CEE5FD331E7A04BF00AB16C4 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -342,6 +346,7 @@
 				CE50DAD11E8C7A0F00AE20A5 /* Group.swift in Sources */,
 				CEE63AF81E7EDA7E00558297 /* Ingredient.swift in Sources */,
 				CEE63AF21E7ED9EF00558297 /* IngredientsTableViewController.swift in Sources */,
+				CE07C7361F0C2049006FA5E8 /* SegueFromLeft.swift in Sources */,
 				CEE63AFA1E7EDBD000558297 /* AddIngredientTableViewCell.swift in Sources */,
 				CEE448201E7DEB22009CEE5F /* AddStepsTableViewCell.swift in Sources */,
 				CE2AACB81E8200080055B6F3 /* ShowStepsTableViewCell.swift in Sources */,
@@ -421,6 +426,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -471,7 +477,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -497,11 +504,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LNPQG4D7M5;
 				INFOPLIST_FILE = ProportionDistortion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.ProportionDistortion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nSnyder.ProportionDistortion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "025a5c2c-9426-445a-b42b-abc453ffb196";
+				PROVISIONING_PROFILE_SPECIFIER = ProportionDistortionDevelopment;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -509,11 +524,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = LNPQG4D7M5;
 				INFOPLIST_FILE = ProportionDistortion/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.ProportionDistortion;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nSnyder.ProportionDistortion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b8bcc1b7-9a27-444b-a8d8-30b50d9402b2";
+				PROVISIONING_PROFILE_SPECIFIER = ProportionDistortionDistribution;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

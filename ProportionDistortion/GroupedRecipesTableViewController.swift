@@ -13,14 +13,15 @@ class GroupedRecipesTableViewController: UITableViewController, UINavigationCont
 //MARK: Properties
     var recipeList = AllRecipes()
     var recipes = [Recipe]()
+    var groupsList = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.navigationController?.isNavigationBarHidden = false
         
-        self.tableView.backgroundColor = UIColor.black
-        self.tableView.separatorColor = UIColor.blue
+        self.tableView.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.tableView.separatorColor = UIColor(red: 225.0/255.0, green: 60.0/255.0, blue: 0/255.0, alpha: 1.0)
         
                        
         // Uncomment the following line to preserve selection between presentations
@@ -60,26 +61,35 @@ class GroupedRecipesTableViewController: UITableViewController, UINavigationCont
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
+    
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            recipes.remove(at: indexPath.row)
+            let cell = tableView.cellForRow(at: indexPath) as? GroupedRecipesTableViewCell
+            let currentRecipe = cell?.RecipeNameLabel.text
+            for r in recipeList.allRecipes {
+                if r.recipeName == currentRecipe! {
+                    recipeList.deleteRecipe(recipe: r)
+                }
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -119,6 +129,7 @@ class GroupedRecipesTableViewController: UITableViewController, UINavigationCont
             recipeViewController.recipeList = self.recipeList
             recipeViewController.recipe = recipe
             recipeViewController.distortedIngredients = recipe.recipeIngredients
+            recipeViewController.allGroups = groupsList
             recipeViewController.navigationItem.title = recipe.recipeName
             
         case "AddNewGroupRecipe":
@@ -129,10 +140,24 @@ class GroupedRecipesTableViewController: UITableViewController, UINavigationCont
                 fatalError("Nav controller is not presenting AddRecipeViewController")
             }
             addRecipeViewController.recipeList = self.recipeList
-            addRecipeViewController.groupsList = [self.navigationItem.title!]
+            var groups = [String]()
+            for r in recipeList.allRecipes{
+                if !(groups.contains(r.recipeGroup)) && r.recipeGroup != "" {
+                    groups += [r.recipeGroup]
+                }
+            }
+            let allRecipesGroupIndex = groups.index(of: "All Recipes")
+            if allRecipesGroupIndex != 0 && allRecipesGroupIndex != nil {
+                groups.remove(at: allRecipesGroupIndex!)
+                groups.insert("All Recipes", at: 0)
+            } else if allRecipesGroupIndex == nil {
+                groups.insert("All Recipes", at: 0)
+            }
+            
+            addRecipeViewController.groupsList = groups
             
         default:
-            fatalError("Unexpected segue identifier: \(segue.identifier)")
+            fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
         }
     }
 }

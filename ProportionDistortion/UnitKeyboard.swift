@@ -37,6 +37,7 @@ class UnitKeyboard: UIView {
         let view = Bundle.main.loadNibNamed(xibFileName, owner: self, options: nil)?[0] as! UIView
         self.addSubview(view)
         view.frame = self.bounds
+        view.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
     }
     
     // MARK:- Button actions from .xib file

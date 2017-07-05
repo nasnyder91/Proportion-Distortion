@@ -16,6 +16,8 @@ class AddIngredientTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        addNewIngredientLabel.textColor = UIColor.gray
         // Initialization code
     }
 

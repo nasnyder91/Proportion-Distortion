@@ -12,14 +12,20 @@ class ShowIngredientsTableViewCell: UITableViewCell, UITextViewDelegate {
     
 //MARK: Properties
     @IBOutlet weak var ingredientsTextView: UITextView!
+    @IBOutlet weak var ingredientsLabel: UILabel!
+    @IBOutlet weak var editIngredientsButton: UIButton!
     
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.backgroundColor = UIColor.black
+        self.ingredientsLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
+
+        self.editIngredientsButton.tintColor = UIColor.gray
+        self.editIngredientsButton.titleLabel?.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
         self.ingredientsTextView.backgroundColor = UIColor.clear
-        self.ingredientsTextView.textColor = UIColor.blue
+        self.ingredientsTextView.textColor = UIColor.black
+        self.ingredientsTextView.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
         // Initialization code
     }
 

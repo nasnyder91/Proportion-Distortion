@@ -14,6 +14,16 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     
 //MARK: Properties
     @IBOutlet weak var recipeTableView: UITableView!
+    @IBOutlet weak var ingredientsLabel: UILabel!
+    @IBOutlet weak var stepsLabel: UILabel!
+    @IBOutlet weak var distortButton: UIButton!
+    @IBOutlet weak var groupNameLabel: UILabel!
+    @IBOutlet weak var editGroupButton: UIButton!
+    
+    var allGroups = [String]()
+    
+    var editGroupPickerView = UIPickerView()
+    var groupChoices = [String]()
     
     var distortPickerView = UIPickerView()
     let distortChoices: [Double] = [0.25, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -28,11 +38,20 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
         
-        self.view.backgroundColor = UIColor.black
-        self.recipeTableView.backgroundColor = UIColor.black
-        self.recipeTableView.separatorColor = UIColor.blue
+        groupNameLabel.text = "Group: \(self.recipe?.recipeGroup ?? "")"
+        groupNameLabel.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
+        editGroupButton.titleLabel?.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
+        editGroupButton.tintColor = UIColor.gray
         
-        self.distortPickerView.backgroundColor = UIColor.darkGray
+        
+        self.view.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.recipeTableView.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.recipeTableView.separatorColor = UIColor(red: 225.0/255.0, green: 60.0/255.0, blue: 0/255.0, alpha: 0.5)
+        
+        self.distortButton.tintColor = UIColor(red: 225.0/255.0, green: 60.0/255.0, blue: 0/255.0, alpha: 1.0)
+        self.distortButton.titleLabel?.font = UIFont(name: "ChalkboardSE-Regular", size: 48)
+        
+        self.distortPickerView.tintColor = UIColor.black
         
         
         //Table View delegation and data source
@@ -42,7 +61,8 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         //Picker view delegation and data source
         self.distortPickerView.delegate = self
         self.distortPickerView.dataSource = self
-        self.distortPickerView.backgroundColor = UIColor.white
+        self.distortPickerView.showsSelectionIndicator = true
+        self.distortPickerView.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
         self.distortPickerView.isHidden = true
         self.distortPickerView.isOpaque = true
         self.view.addSubview(distortPickerView)
@@ -53,12 +73,32 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         self.distortPickerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.4, constant: 0.0)
         self.distortPickerView.selectRow(2, inComponent: 0, animated: false)
         
+        groupChoices = allGroups
+        if groupChoices.contains("All Recipes") {
+            let allIndex = groupChoices.index(of: "All Recipes")
+            groupChoices.remove(at: allIndex!)
+        }
         
-        //Automatically adjust cells to fit textview size
-        self.recipeTableView.estimatedRowHeight = 50
-        self.recipeTableView.rowHeight = UITableViewAutomaticDimension
-        self.recipeTableView.setNeedsLayout()
-        self.recipeTableView.layoutIfNeeded()
+        
+        self.editGroupPickerView.delegate = self
+        self.editGroupPickerView.dataSource = self
+        self.editGroupPickerView.showsSelectionIndicator = true
+        self.editGroupPickerView.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.editGroupPickerView.isHidden = true
+        self.editGroupPickerView.isOpaque = true
+        self.view.addSubview(editGroupPickerView)
+        self.editGroupPickerView.translatesAutoresizingMaskIntoConstraints = false
+        self.editGroupPickerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.editGroupPickerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.editGroupPickerView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.editGroupPickerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.4, constant: 0.0)
+        self.editGroupPickerView.selectRow(2, inComponent: 0, animated: false)
+        
+        let tapOutsidePicker = UITapGestureRecognizer(target: self, action: #selector(cancelPicker(sender:)))
+        self.view.addGestureRecognizer(tapOutsidePicker)
+        
+        
+        autoSizeCells()
 
         // Do any additional setup after loading the view.
     }
@@ -66,6 +106,14 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func autoSizeCells() {
+        //Automatically adjust cells to fit textview size
+        self.recipeTableView.estimatedRowHeight = 100
+        self.recipeTableView.rowHeight = UITableViewAutomaticDimension
+        self.recipeTableView.setNeedsLayout()
+        self.recipeTableView.layoutIfNeeded()
     }
     
 // MARK: - Table view data source
@@ -126,10 +174,12 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             
             cell.ingredientsTextView.text = ingredientsText
-            cell.ingredientsTextView.sizeToFit()
+            
+            cell.ingredientsTextView.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
 
-            
+            cell.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+
             return cell
             
         case 1:
@@ -151,8 +201,11 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             }
             
             cell.stepsTextView.text = stepsText
-            cell.stepsTextView.sizeToFit()
+            
+            cell.stepsTextView.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
             cell.selectionStyle = UITableViewCellSelectionStyle.none
+            
+            cell.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
             
             return cell
             
@@ -204,29 +257,71 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return distortChoices.count
+        if pickerView == distortPickerView {
+            return distortChoices.count
+        } else {
+            return groupChoices.count
+        }
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    /*func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         var distortChoiceString: String
         if distortChoices[row] < 1 || String(distortChoices[row]).contains(".5") {
-            distortChoiceString = String(distortChoices[row])
+            distortChoiceString = String(distortChoices[row]) + "x"
         }
         else {
-            distortChoiceString = String(Int(distortChoices[row]))
+            distortChoiceString = String(Int(distortChoices[row])) + "x"
         }
-        return distortChoiceString + "X"
-    }
+        return distortChoiceString
+    }*/
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        distortValue = distortChoices[row]
-        pickerView.isHidden = true
-        distortIngredientsList()
-        let newIndexPath = IndexPath(row: 0, section: 0)
-        self.recipeTableView.reloadRows(at: [newIndexPath], with: .none)
+        if pickerView == distortPickerView {
+            distortValue = distortChoices[row]
+            pickerView.isHidden = true
+            distortIngredientsList()
+            let newIndexPath = IndexPath(row: 0, section: 0)
+            self.recipeTableView.reloadRows(at: [newIndexPath], with: .none)
+            autoSizeCells()
+        } else {
+            let newGroup = groupChoices[row]
+            pickerView.isHidden = true
+            let recipeName = recipe?.recipeName
+            for r in (recipeList?.allRecipes)! {
+                if r.recipeName == recipeName {
+                    r.recipeGroup = newGroup
+                }
+            }
+            groupNameLabel.text = "Group: \(newGroup)"
+        }
     }
 
-
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        if pickerView == distortPickerView {
+            var distortChoiceString: String
+            if distortChoices[row] < 1 || String(distortChoices[row]).contains(".5") {
+                distortChoiceString = String(distortChoices[row]) + "x"
+            }
+            else {
+                distortChoiceString = String(Int(distortChoices[row])) + "x"
+            }
+            let myTitle = NSAttributedString(string: String(distortChoiceString), attributes: [NSFontAttributeName:UIFont(name: "ChalkboardSE-Regular", size: 15.0)!,NSForegroundColorAttributeName:UIColor(red: 29.0/255.0, green: 55.0/255.0, blue: 3.0/255.0, alpha: 1.0)])
+            return myTitle
+        } else {
+            let groupString = groupChoices[row]
+            let myTitle = NSAttributedString(string: String(groupString), attributes: [NSFontAttributeName:UIFont(name: "ChalkboardSE-Regular", size: 15.0)!,NSForegroundColorAttributeName:UIColor(red: 29.0/255.0, green: 55.0/255.0, blue: 3.0/255.0, alpha: 1.0)])
+            return myTitle
+        }
+        
+    }
+    
+    func cancelPicker(sender: UIBarButtonItem) {
+        print("Cancelling pciker")
+        distortPickerView.resignFirstResponder()
+        distortPickerView.isHidden = true
+        editGroupPickerView.resignFirstResponder()
+        editGroupPickerView.isHidden = true
+    }
     
 // MARK: - Navigation
 
@@ -258,7 +353,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
            os_log("Going home", log: OSLog.default, type: .debug)
             
         default:
-            fatalError("Unexpected segue identifier: \(segue.identifier)")
+            fatalError("Unexpected segue identifier: \(String(describing: segue.identifier))")
         }
         
     }
@@ -291,7 +386,14 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBAction func showDistortPickerView(_ sender: UIButton) {
         distortPickerView.isHidden = false
+        editGroupPickerView.isHidden = true
     }
+    
+    @IBAction func showEditGroup(_ sender: UIButton) {
+        editGroupPickerView.isHidden = false
+        distortPickerView.isHidden = true
+    }
+    
     
 //MARK: Instance Methods
     func unitIsMetric(unit: String) -> Bool {

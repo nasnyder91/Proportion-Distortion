@@ -18,11 +18,18 @@ class AddStepsViewController: UIViewController, UITextViewDelegate, UINavigation
     
     var step: Step?
     
+    override func viewWillAppear(_ animated: Bool) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.addStepTextField.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.addStepTextField.font = UIFont(name: "ChalkboardSE-Regular", size: 20)
+        
         addStepTextField.delegate = self
+        addStepTextField.becomeFirstResponder()
         
         if let step = step {
             addStepTextField.text = step.step
@@ -36,27 +43,16 @@ class AddStepsViewController: UIViewController, UITextViewDelegate, UINavigation
         // Dispose of any resources that can be recreated.
     }
     
-//MARK: UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    
 
 // MARK: - Navigation
     @IBAction func cancelAddStep(_ sender: UIBarButtonItem) {
-        //let isPresentingInAddStepMode = presentingViewController is UINavigationController
         
-       // if isPresentingInAddStepMode {
-            dismiss(animated: true, completion: nil)
-       // }
-        //else if let owningNavigationController = navigationController {
-         //   owningNavigationController.popViewController(animated: true)
-        //}
-        //else {
-        //    fatalError("AddStepViewController is not in a navigation controller")
-       // }
+        if let owningNavigationController = navigationController {
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("AddStepViewController is not in a navigation controller")
+        }
     }
 
     

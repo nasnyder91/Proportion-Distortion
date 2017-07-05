@@ -24,8 +24,10 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.groupNameTextField.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
         
+        self.groupNameTextField.font = UIFont(name: "ChalkboardSE-Regular", size: 24.0)
         
         self.navigationItem.title = "Add New Group"
     
@@ -41,12 +43,17 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate {
 //MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         newGroupName = groupNameTextField.text
         
-        updateSaveButtonState()
+        //updateSaveButtonState()
         
         return true
     }
+    @IBAction func textFieldDidChange(_ sender: UITextField) {
+        updateSaveButtonState()
+    }
+    
 
     
 // MARK: - Navigation
