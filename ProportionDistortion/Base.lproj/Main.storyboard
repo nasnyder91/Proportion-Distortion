@@ -76,7 +76,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTj-E1-5E9">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTj-E1-5E9">
                                             <rect key="frame" x="8" y="8" width="359" height="33"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -639,7 +639,7 @@
                                         <rect key="frame" x="0.0" y="40" width="375" height="503"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShowIngredientsCell" rowHeight="210" id="wYM-7M-7tr" customClass="ShowIngredientsTableViewCell" customModule="ProportionDistortion" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShowIngredientsCell" rowHeight="210" id="wYM-7M-7tr" customClass="ShowIngredientsTableViewCell" customModule="ProportionDistortion" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="210"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wYM-7M-7tr" id="caS-w5-nsY">
@@ -647,7 +647,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cIZ-by-fNr">
-                                                            <rect key="frame" x="8" y="8" width="651" height="194"/>
+                                                            <rect key="frame" x="8" y="8" width="359" height="194"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBU-9b-iDw">
                                                                     <rect key="frame" x="0.0" y="0.0" width="90.5" height="34"/>
@@ -658,8 +658,8 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OQw-cE-oah">
-                                                                    <rect key="frame" x="0.0" y="42" width="651" height="114"/>
+                                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="OQw-cE-oah">
+                                                                    <rect key="frame" x="0.0" y="42" width="359" height="114"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -682,7 +682,7 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="cIZ-by-fNr" secondAttribute="trailing" constant="-284" id="Id7-aa-pgW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="cIZ-by-fNr" secondAttribute="trailing" constant="8" id="Id7-aa-pgW"/>
                                                         <constraint firstItem="cIZ-by-fNr" firstAttribute="leading" secondItem="caS-w5-nsY" secondAttribute="leadingMargin" id="L2I-Jo-imJ"/>
                                                         <constraint firstItem="cIZ-by-fNr" firstAttribute="top" secondItem="caS-w5-nsY" secondAttribute="topMargin" id="N3S-pb-lEG"/>
                                                         <constraint firstItem="cIZ-by-fNr" firstAttribute="bottom" secondItem="caS-w5-nsY" secondAttribute="bottomMargin" id="rA1-Zp-RtO"/>
@@ -702,7 +702,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="o7R-f6-Q8R">
-                                                            <rect key="frame" x="8" y="8" width="651" height="194"/>
+                                                            <rect key="frame" x="8" y="8" width="359" height="194"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgV-qC-8VH">
                                                                     <rect key="frame" x="0.0" y="0.0" width="49" height="34"/>
@@ -713,8 +713,8 @@
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V7f-my-2gl">
-                                                                    <rect key="frame" x="0.0" y="42" width="651" height="114"/>
+                                                                <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="V7f-my-2gl">
+                                                                    <rect key="frame" x="0.0" y="42" width="359" height="114"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -740,7 +740,7 @@
                                                         <constraint firstItem="o7R-f6-Q8R" firstAttribute="bottom" secondItem="dfr-dw-c9c" secondAttribute="bottomMargin" id="11A-XW-zef"/>
                                                         <constraint firstItem="o7R-f6-Q8R" firstAttribute="top" secondItem="dfr-dw-c9c" secondAttribute="topMargin" id="dIx-R8-ncW"/>
                                                         <constraint firstItem="o7R-f6-Q8R" firstAttribute="leading" secondItem="dfr-dw-c9c" secondAttribute="leadingMargin" id="lIp-ll-64z"/>
-                                                        <constraint firstAttribute="trailing" secondItem="o7R-f6-Q8R" secondAttribute="trailing" constant="-284" id="x1E-cc-SYY"/>
+                                                        <constraint firstAttribute="trailing" secondItem="o7R-f6-Q8R" secondAttribute="trailing" constant="8" id="x1E-cc-SYY"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -948,7 +948,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="048-dz-k8J">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="048-dz-k8J">
                                             <rect key="frame" x="8" y="8" width="359" height="33"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>

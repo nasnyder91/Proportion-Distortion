@@ -363,21 +363,41 @@ class ProportionDistortionViewController: UIViewController, UISearchControllerDe
     
     private func loadSampleGroups() {
         let allRecipesGroup = "All Recipes"
-        let group1 = "Soups"
-        let group2 = "Chicken"
-        let group3 = "Mexican"
+        let group1 = "Pasta"
+        let group2 = "Salads"
+        let group3 = "Desserts"
         
         groups += [allRecipesGroup,group1,group2,group3]
     }
     
     private func loadSampleGroupRecipes() {
         print("loading sample recipes")
-        let ingredients = [Ingredient]()
-        let steps = [Step]()
         
-        let recipe1 = Recipe(recipeName: "Butternut Squash", recipeIngredients: ingredients , recipeSteps: steps, recipeGroup: "Soups")
-        let recipe2 = Recipe(recipeName: "Seseme Ginger Chicken", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Chicken")
-        let recipe3 = Recipe(recipeName: "Steak Tacos", recipeIngredients: ingredients, recipeSteps: steps, recipeGroup: "Mexican")
+        var macIngredients = [Ingredient]()
+        var macSteps = [Step?]()
+        
+        macIngredients += [Ingredient(quantity: "1", unit: "Cup", ingredient: "whole-wheat macaroni"), Ingredient(quantity: "2", unit: "Tbsp", ingredient: "butter"), Ingredient(quantity: "2", unit: "Tbsp", ingredient: "whole-wheat flour"), Ingredient(quantity: "1", unit: "Cup", ingredient: "milk"), Ingredient(quantity: "1", unit: "Cup", ingredient: "grated cheddar cheese"), Ingredient(quantity: "", unit: "Dash", ingredient: "Salt"), Ingredient(quantity: "", unit: "Dash", ingredient: "Pepper")]
+        
+        macSteps += [Step(step: "Cook macaroni according to package directions."), Step(step: "Melt the butter in a pan over medium heat."), Step(step: "Whisk in the flour and keep whisking for 1-2 minutes"), Step(step: "Turn heat down to low.  Whisk in milk.  Turn heat back up to medium and keep whisking until all lumps of flour are dissolved and sauce thickens."), Step(step: "Stir in grated cheese.  Mix in cooked noodles.  Season with salt and pepper.")]
+        
+        let recipe1 = Recipe(recipeName: "Whole Wheat Mac n Cheese", recipeIngredients: macIngredients , recipeSteps: macSteps as! [Step], recipeGroup: "Pasta")
+        
+        var salIngredients = [Ingredient]()
+        var salSteps = [Step?]()
+        
+        salIngredients += [Ingredient(quantity: "2/3", unit: "Cup", ingredient: "slivered toasted almonds"), Ingredient(quantity: "3", unit: "Cup", ingredient: "chopped cooked chicken"), Ingredient(quantity: "3/4", unit: "Cup", ingredient: "dried cranberries"), Ingredient(quantity: "2", unit: "", ingredient: "diced celery ribs"), Ingredient(quantity: "1/2", unit: "", ingredient: "diced small sweet onion"), Ingredient(quantity: "3/4", unit: "Cup", ingredient: "mayonnaise"), Ingredient(quantity: "2", unit: "Tbsp", ingredient: "fresh lemon juice")]
+        
+        salSteps += [Step(step: "Stir together almonds, chicken, dried cranberries, onion, and celery ribs."), Step(step: "Stir in mayo and fresh lemon juice."), Step(step: "(optional) add black pepper, salt, or your choice of seasoning for taste.")]
+        let recipe2 = Recipe(recipeName: "Cranberry-Almond Chicken Salad", recipeIngredients: salIngredients, recipeSteps: salSteps as! [Step], recipeGroup: "Salads")
+        
+        var desIngredients = [Ingredient]()
+        var desSteps = [Step?]()
+        
+        desIngredients += [Ingredient(quantity: "6", unit: "Tbsp", ingredient: "cocunut oil or butter"), Ingredient(quantity: "6", unit: "oz", ingredient: "semi-sweet chocolate chips"), Ingredient(quantity: "2", unit: "", ingredient: "large eggs"), Ingredient(quantity: "2/3", unit: "Cup", ingredient: "sugar"), Ingredient(quantity: "2", unit: "Tsp", ingredient: "vanilla extract"), Ingredient(quantity: "1/4", unit: "Cup", ingredient: "unsweetened cocoa powder"), Ingredient(quantity: "3", unit: "Tbsp", ingredient: "arrowroot powder or corn starch"), Ingredient(quantity: "1/4", unit: "Tsp", ingredient: "salt")]
+        
+        desSteps += [Step(step: "Preheat oven to 350F"), Step(step: "Prepare 8x8 baking pan by lining it with a sheet of aluminum foil.  Grease the foil and set aside."), Step(step: "In a small sauce pan over low heat, mix coconut oil and chocolate chips.  Stir until combined.  Set aside to cool slightly."), Step(step: "Using a mixer, beat together eggs, sugar, and vanilla extract for about 2 minutes.  Mix in melted chocolate mixture."), Step(step: "Add the rest of ingredients.  Mix until smooth."), Step(step: "Pour batter into prepared pan."), Step(step: "Bake for 25-30 minutes."), Step(step: "Remove from oven and let cool for about 15 minutes."), Step(step: "Transfer brownies to a wire rack to cool completely.")]
+        
+        let recipe3 = Recipe(recipeName: "Flourless Chocolate Brownies", recipeIngredients: desIngredients, recipeSteps: desSteps as! [Step], recipeGroup: "Desserts")
 
         recipeList.allRecipes += [recipe1]
         recipeList.allRecipes += [recipe2]

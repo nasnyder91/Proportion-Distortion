@@ -31,12 +31,14 @@ class IngredientTableViewCell: UITableViewCell, UITextFieldDelegate, KeyboardDel
         unitTextField.inputView = keyboardView
 
         self.quantityTextField.keyboardType = UIKeyboardType.numberPad
-        
         createToolBar()
         
         self.quantityTextField.inputAccessoryView = decimalSlash
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     
     func createToolBar() {
@@ -76,7 +78,6 @@ class IngredientTableViewCell: UITableViewCell, UITextFieldDelegate, KeyboardDel
     func rotated() {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
-        
         decimalSlash.items?[1].width = screenWidth/2
         decimalSlash.items?[3].width = screenWidth/2
     }

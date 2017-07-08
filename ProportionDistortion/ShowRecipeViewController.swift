@@ -152,8 +152,19 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
                     
                     
                     if distortedIngredient.quantity == ingredient.quantity && !unitIsMetric(unit: ingredient.unit) {
+                        
                         ingredient.quantity = convertQuantityToDecimal(ingredient: ingredient)
                         ingredient.quantity = convertQuantityToFraction(quantity: ingredient.quantity)
+                        
+                        
+                        if i < ingredientsList.count-1 {
+                            ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)\n"
+                        } else {
+                            ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)"
+                        }
+                    } else if distortedIngredient.quantity == ingredient.quantity && unitIsMetric(unit: ingredient.unit) {
+                        
+                        ingredient.quantity = convertQuantityToDecimal(ingredient: ingredient)
                         
                         if i < ingredientsList.count-1 {
                             ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)\n"
@@ -161,6 +172,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
                             ingredientsText += "\u{2022} \(ingredient.quantity) \(ingredient.unit) \(ingredient.ingredient)"
                         }
                     } else if !unitIsMetric(unit: ingredient.unit){
+                        
                         distortedIngredient.quantity = convertQuantityToDecimal(ingredient: distortedIngredient)
                         distortedIngredient.quantity = convertQuantityToFraction(quantity: distortedIngredient.quantity)
                         
@@ -169,7 +181,10 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
                         } else {
                             ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)"
                         }
-                    } else if unitIsMetric(unit: ingredient.unit){
+                    } else if unitIsMetric(unit: ingredient.unit) {
+                        
+                        distortedIngredient.quantity = convertQuantityToDecimal(ingredient: distortedIngredient)
+                        
                         if i < ingredientsList.count-1 {
                             ingredientsText += "\u{2022} \(distortedIngredient.quantity) \(distortedIngredient.unit) \(distortedIngredient.ingredient)\n"
                         } else {
@@ -182,6 +197,10 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.ingredientsTextView.text = ingredientsText
             
             cell.ingredientsTextView.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
+            let screenSize = UIScreen.main.bounds
+            let size = CGSize(width: screenSize.width, height: screenSize.height)
+            cell.ingredientsTextView.sizeThatFits(size)
+            
             cell.selectionStyle = UITableViewCellSelectionStyle.none
 
             cell.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
@@ -209,9 +228,17 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             cell.stepsTextView.text = stepsText
             
             cell.stepsTextView.font = UIFont(name: "ChalkboardSE-Regular", size: 22)
+            //let screenSize = UIScreen.main.bounds
+            //let size = CGSize(width: screenSize.width, height: screenSize.height)
+            //cell.stepsTextView.sizeThatFits(size)
+            //cell.stepsTextView.sizeToFit()
+            cell.sizeToFit()
+            
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             
             cell.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+            
+            
             
             return cell
             
@@ -421,9 +448,10 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             let ingredient = ingredientsList[i]
             
             let decimalIngredientQuantity = convertQuantityToDecimal(ingredient: ingredient)
-            
+
             if let initialQuantity = Double(decimalIngredientQuantity)  {
                 let newIngredient = Ingredient(quantity: String(initialQuantity * distortValue!), unit: ingredientsList[i].unit, ingredient: ingredientsList[i].ingredient)
+                print("new ingredient: " + newIngredient.quantity)
                 distortedIngredients[i] = newIngredient
             } else {
                 let newIngredient = Ingredient(quantity: "", unit: ingredientsList[i].unit, ingredient: ingredientsList[i].ingredient)
@@ -521,26 +549,35 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func reduceStringFraction(fraction: String) -> String{
         print(fraction)
+        
+        let fractions: [Double] = [15/16, 7/8, 13/16, 3/4, 11/16, 2/3, 5/8, 9/16, 1/2, 7/16, 3/8, 1/3, 5/16, 1/4, 3/16, 1/8, 1/16, 0]
+        let stringFractions: [String] = ["15/16", "7/8", "13/16", "3/4", "11/16", "2/3", "5/8", "9/16", "1/2", "7/16", "3/8", "1/3", "5/16", "1/4", "3/16", "1/8", "1/16", "0"]
+        
+        
         let slashIndex = fraction.range(of: "/")?.lowerBound
-        var numerator = fraction.substring(to: slashIndex!)
+        let numerator = fraction.substring(to: slashIndex!)
         var denominator = fraction.substring(from: slashIndex!)
         denominator.remove(at: denominator.startIndex)
         
-        let intNumerator = Int(numerator)
-        let intDenominator = Int(denominator)
         
-        for i in 0..<intNumerator! {
-            if (intNumerator! % (intNumerator! - i)) == 0 && (intDenominator! % (intNumerator! - i)) == 0 {
-                if numerator != String(intNumerator! / (intNumerator! - i)) && denominator != String(intDenominator! / (intNumerator! - i)){
-                    numerator = String(intNumerator! / (intNumerator! - i))
-                    denominator = String(intDenominator! / (intNumerator! - i))
-                } else {
-                    return (numerator + "/" + denominator)
+        let decimal = Double(numerator)! / Double(denominator)!
+        
+        
+        for i in 0..<fractions.count {
+            if decimal <= fractions[i] && decimal > fractions[i + 1]  {
+                if fractions[i + 1] == 0 {
+                    return stringFractions[i]
                 }
-                
-                return reduceStringFraction(fraction: (numerator + "/" + denominator))
+                let first = fractions[i] - decimal
+                let second = decimal - fractions[i + 1]
+                if first < second {
+                    return stringFractions[i]
+                } else {
+                    return stringFractions[i + 1]
+                }
             }
         }
-        return (numerator + "/" + denominator)
+        
+        return stringFractions[0]
     }
 }
