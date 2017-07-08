@@ -15,6 +15,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var ingredients = [Ingredient]()
     
+    @IBOutlet weak var quantityTextField: UITextField!
     
     
     

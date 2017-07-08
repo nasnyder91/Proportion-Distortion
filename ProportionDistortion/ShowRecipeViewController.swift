@@ -19,6 +19,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var distortButton: UIButton!
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var editGroupButton: UIButton!
+    @IBOutlet weak var groupStackView: UIStackView!
     
     var allGroups = [String]()
     
@@ -46,23 +47,28 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.view.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
         self.recipeTableView.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        self.recipeTableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
         self.recipeTableView.separatorColor = UIColor(red: 225.0/255.0, green: 60.0/255.0, blue: 0/255.0, alpha: 0.5)
+        self.recipeTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        self.recipeTableView.layer.borderWidth = 1
+        self.recipeTableView.layer.borderColor = UIColor.black.cgColor
         
         self.distortButton.tintColor = UIColor(red: 225.0/255.0, green: 60.0/255.0, blue: 0/255.0, alpha: 1.0)
         self.distortButton.titleLabel?.font = UIFont(name: "ChalkboardSE-Regular", size: 48)
         
         self.distortPickerView.tintColor = UIColor.black
         
-        
         //Table View delegation and data source
         self.recipeTableView.delegate = self
         self.recipeTableView.dataSource = self
+        self.recipeTableView.separatorColor = UIColor.black
         
         //Picker view delegation and data source
         self.distortPickerView.delegate = self
         self.distortPickerView.dataSource = self
         self.distortPickerView.showsSelectionIndicator = true
         self.distortPickerView.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
+        
         self.distortPickerView.isHidden = true
         self.distortPickerView.isOpaque = true
         self.view.addSubview(distortPickerView)
@@ -213,6 +219,10 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             fatalError("Could not create cell")
         }
      }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0
+    }
     
     
     /*

@@ -791,6 +791,7 @@
                         <outlet property="distortButton" destination="Viq-AM-7ko" id="ND0-Ud-4iN"/>
                         <outlet property="editGroupButton" destination="1CN-8L-6Wf" id="az2-yf-4gz"/>
                         <outlet property="groupNameLabel" destination="jhZ-1i-6Lg" id="wGN-Nm-YAu"/>
+                        <outlet property="groupStackView" destination="eu1-Jr-CKj" id="hIj-JG-tcp"/>
                         <outlet property="recipeTableView" destination="FaZ-FA-tIF" id="TKe-5Z-IdG"/>
                     </connections>
                 </viewController>
