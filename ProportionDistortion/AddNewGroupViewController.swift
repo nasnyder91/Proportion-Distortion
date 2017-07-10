@@ -59,14 +59,11 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate {
 // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let button = sender as? UIBarButtonItem, button === self.navigationItem.rightBarButtonItem else{
-            return
-        }
-        
-        newGroupName = groupNameTextField.text
-    }
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+    }*/
     @IBAction func saveGroup(_ sender: UIBarButtonItem) {
+        newGroupName = groupNameTextField.text
         self.performSegue(withIdentifier: "unwindToMain", sender: self)
     }
     
