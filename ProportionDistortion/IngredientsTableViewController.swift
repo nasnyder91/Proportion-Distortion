@@ -15,19 +15,24 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var ingredients = [Ingredient]()
     
-    @IBOutlet weak var quantityTextField: UITextField!
-    
+    var currentEntries: [(Int,String,String,String)] = []
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateSavebuttonState()
+        //updateSavebuttonState()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
         loadAddCell()
+        if ingredients.count-1 != 0 {
+            for i in 0..<ingredients.count-1 {
+                currentEntries += [(i,ingredients[i].quantity,ingredients[i].unit,ingredients[i].ingredient)]
+            }
+        }
+        
         
         updateSavebuttonState()
     }
@@ -58,15 +63,17 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ingredientCellIdentifier, for: indexPath) as? IngredientTableViewCell else {
                 fatalError("Cell is not of type IngredientTableViewCell")
             }
-            let ingredient = ingredients[indexPath.row]
+            
+            let currentIngredient = currentEntries[currentCellIndex]
             
             cell.quantityTextField.delegate = self
             cell.unitTextField.delegate = self
             cell.ingredientTextField.delegate = self
             
-            cell.quantityTextField.text = ingredient.quantity
-            cell.unitTextField.text = ingredient.unit
-            cell.ingredientTextField.text = ingredient.ingredient
+            cell.quantityTextField.text = currentIngredient.1
+            cell.unitTextField.text = currentIngredient.2
+            cell.ingredientTextField.text = currentIngredient.3
+            
             
             cell.quantityTextField.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
             cell.unitTextField.backgroundColor = UIColor(red: 204.0/255.0, green: 255.0/255.0, blue: 151.0/255.0, alpha: 1.0)
@@ -97,13 +104,17 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
     
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (tableView.cellForRow(at: indexPath) as? AddIngredientTableViewCell) != nil {
+        if (tableView.cellForRow(at: indexPath) is AddIngredientTableViewCell) {
             let newIngredient = Ingredient()
             
             ingredients.insert(newIngredient, at: ingredients.count-1)
+            currentEntries.append((indexPath.row,"","",""))
             tableView.deselectRow(at: indexPath, animated: true)
             tableView.insertRows(at: [indexPath], with: .automatic)
+            
             updateSavebuttonState()
         }
         
@@ -125,6 +136,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         if editingStyle == .delete {
             ingredients.remove(at: indexPath.row)
             // Delete the row from the data source
+            currentEntries.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             updateSavebuttonState()
         } else if editingStyle == .insert {
@@ -155,11 +167,50 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         
         return true
     }
-    //func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
-    //    updateSavebuttonState()
-    //}
-    @IBAction func textFieldDidChange(_ sender: UITextField) {
+    
+    @IBAction func ingredientTextFieldDidChange(_ sender: UITextField) {
+       
+        for i in 0..<currentEntries.count {
+            let cellIndex = IndexPath(row: i, section: 0)
+            if tableView.cellForRow(at: cellIndex) != nil {
+                guard let cell = (tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell)  else {
+                    fatalError("Cell is not of type IngredientTableViewCell.")
+                }
+                if cell.ingredientTextField == sender {
+                    currentEntries[i].3 = sender.text!
+                    break
+                }
+            }
+        }
         updateSavebuttonState()
+    }
+    @IBAction func unitTextFieldDidChange(_ sender: UITextField) {
+        for i in 0..<currentEntries.count {
+            let cellIndex = IndexPath(row: i, section: 0)
+            if tableView.cellForRow(at: cellIndex) != nil {
+                guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {
+                    fatalError("Cell is not of type IngredientTableViewCell")
+                }
+                if cell.unitTextField == sender {
+                    currentEntries[i].2 = sender.text!
+                    break
+                }
+            }
+        }
+    }
+    @IBAction func qtyTextFieldDidChange(_ sender: UITextField) {
+        for i in 0..<currentEntries.count {
+            let cellIndex = IndexPath(row: i, section: 0)
+            if tableView.cellForRow(at: cellIndex) != nil {
+                guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {
+                    fatalError("Cell is not of type IngredientTableViewCell")
+                }
+                if cell.quantityTextField == sender {
+                    currentEntries[i].1 = sender.text!
+                    break
+                }
+            }
+        }
     }
     
     
@@ -175,17 +226,19 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         
         for i in 0..<ingredients.count-1 {
             let cellIndex = IndexPath(row: i, section: 0)
-            guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {
-                fatalError("Cell is not of type IngredientTableViewCell")
-            }
-            if let quantityText = cell.quantityTextField.text {
-                ingredients[i].quantity = quantityText
-            }
-            if let unitText = cell.unitTextField.text {
-                ingredients[i].unit = unitText
-            }
-            if let ingredientText = cell.ingredientTextField.text {
-                ingredients[i].ingredient = ingredientText
+            if tableView.cellForRow(at: cellIndex) != nil {
+                guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {
+                    fatalError("Cell is not of type IngredientTableViewCell")
+                }
+                if let quantityText = cell.quantityTextField.text {
+                    ingredients[i].quantity = quantityText
+                }
+                if let unitText = cell.unitTextField.text {
+                    ingredients[i].unit = unitText
+                }
+                if let ingredientText = cell.ingredientTextField.text {
+                    ingredients[i].ingredient = ingredientText
+                }
             }
         }
     }
@@ -213,24 +266,40 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
     }
     func updateSavebuttonState() {
         
-        if ingredients.count == 1 {
+        if currentEntries.count == 0 {
             
             saveButton.isEnabled = false
             return
         }
-        for i in 0..<ingredients.count-1 {
-            let newIndexPath = IndexPath(row: i, section: 0)
-            guard let ingredientCell = tableView.cellForRow(at: newIndexPath) as? IngredientTableViewCell else {
-                return
+        
+        for i in 0..<currentEntries.count {
+            if currentEntries[i].3 == "" {
+                print("ingredient at \(i) is empty")
             }
-            let ingredientText = ingredientCell.ingredientTextField.text ?? ""
-            
-            if ingredientText.isEmpty || ingredientText == "" {
+            print(currentEntries[i].3)
+            if currentEntries[i].3.isEmpty || currentEntries[i].3 == "" {
                 saveButton.isEnabled = false
                 return
             } else {
                 saveButton.isEnabled = true
             }
         }
+        /*
+        for i in 0..<currentEntries.count {
+            let newIndexPath = IndexPath(row: i, section: 0)
+            if tableView.cellForRow(at: newIndexPath) != nil {
+                guard let ingredientCell = tableView.cellForRow(at: newIndexPath) as? IngredientTableViewCell else {
+                    return
+                }
+                let ingredientText = ingredientCell.ingredientTextField.text ?? ""
+                
+                if ingredientText.isEmpty || ingredientText == "" {
+                    saveButton.isEnabled = false
+                    return
+                } else {
+                    saveButton.isEnabled = true
+                }
+            }
+        }*/
     }
 }

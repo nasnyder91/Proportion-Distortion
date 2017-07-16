@@ -374,6 +374,7 @@ class ShowRecipeViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let editIngredientsViewController = segue.destination as? IngredientsTableViewController else {
                 fatalError("Unexpected destination: \(segue.destination)")
             }
+            
             let ingredients = recipe?.recipeIngredients
             editIngredientsViewController.ingredients = ingredients!
             

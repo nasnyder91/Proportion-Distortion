@@ -171,6 +171,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                    <connections>
+                                                        <action selector="qtyTextFieldDidChange:" destination="Z2X-fg-d3Y" eventType="editingChanged" id="blb-OV-02w"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="We2-nW-UVh">
                                                     <rect key="frame" x="83" y="0.0" width="100" height="33"/>
@@ -180,6 +183,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="unitTextFieldDidChange:" destination="Z2X-fg-d3Y" eventType="editingChanged" id="Nkn-Yc-QPZ"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingredient" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pcd-Iw-k6h">
                                                     <rect key="frame" x="191" y="0.0" width="168" height="33"/>
@@ -187,7 +193,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="textFieldDidChange:" destination="Z2X-fg-d3Y" eventType="editingChanged" id="lnN-1R-Smo"/>
+                                                        <action selector="ingredientTextFieldDidChange:" destination="Z2X-fg-d3Y" eventType="editingChanged" id="H8X-uf-fH9"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -845,6 +851,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                    <connections>
+                                                        <action selector="qtyTextFieldDidChange:" destination="A3A-WE-Iee" eventType="editingChanged" id="lYv-Dx-fOa"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jBI-t2-QqS">
                                                     <rect key="frame" x="83" y="0.0" width="100" height="33"/>
@@ -854,6 +863,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="unitTextFieldDidChange:" destination="A3A-WE-Iee" eventType="editingChanged" id="LYj-YO-FPP"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ingredient" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hza-9t-3Wj">
                                                     <rect key="frame" x="191" y="0.0" width="168" height="33"/>
@@ -861,7 +873,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="textFieldDidChange:" destination="A3A-WE-Iee" eventType="editingChanged" id="oFo-16-Kq7"/>
+                                                        <action selector="ingredientTextFieldDidChange:" destination="A3A-WE-Iee" eventType="editingChanged" id="oQb-D1-NGx"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
