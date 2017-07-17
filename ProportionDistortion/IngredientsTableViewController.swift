@@ -224,8 +224,14 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             return
         }
         
-        for i in 0..<ingredients.count-1 {
-            let cellIndex = IndexPath(row: i, section: 0)
+        for i in 0..<currentEntries.count {
+            ingredients[i].quantity = currentEntries[i].1
+            
+            ingredients[i].unit = currentEntries[i].2
+            
+            ingredients[i].ingredient = currentEntries[i].3
+            
+            /*let cellIndex = IndexPath(row: i, section: 0)
             if tableView.cellForRow(at: cellIndex) != nil {
                 guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {
                     fatalError("Cell is not of type IngredientTableViewCell")
@@ -239,7 +245,7 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
                 if let ingredientText = cell.ingredientTextField.text {
                     ingredients[i].ingredient = ingredientText
                 }
-            }
+            }*/
         }
     }
     
