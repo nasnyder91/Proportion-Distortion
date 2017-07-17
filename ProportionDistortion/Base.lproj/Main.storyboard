@@ -172,6 +172,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
+                                                        <action selector="closeKeyboard:" destination="y6b-aq-i5g" eventType="touchDown" id="RO2-hT-qxt"/>
                                                         <action selector="qtyTextFieldDidChange:" destination="Z2X-fg-d3Y" eventType="editingChanged" id="blb-OV-02w"/>
                                                     </connections>
                                                 </textField>
@@ -184,6 +185,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="closeKeyboard:" destination="y6b-aq-i5g" eventType="touchDown" id="SfC-sb-ceW"/>
                                                         <action selector="unitTextFieldDidChange:" destination="Z2X-fg-d3Y" eventType="editingChanged" id="Nkn-Yc-QPZ"/>
                                                     </connections>
                                                 </textField>
@@ -193,6 +195,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="closeKeyboard:" destination="y6b-aq-i5g" eventType="touchDown" id="KGf-Zm-PmC"/>
                                                         <action selector="ingredientTextFieldDidChange:" destination="Z2X-fg-d3Y" eventType="editingChanged" id="H8X-uf-fH9"/>
                                                     </connections>
                                                 </textField>
@@ -852,6 +855,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
+                                                        <action selector="closeKeyboard:" destination="UB0-uO-MiH" eventType="touchDown" id="XJM-kz-31v"/>
                                                         <action selector="qtyTextFieldDidChange:" destination="A3A-WE-Iee" eventType="editingChanged" id="lYv-Dx-fOa"/>
                                                     </connections>
                                                 </textField>
@@ -864,6 +868,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="closeKeyboard:" destination="UB0-uO-MiH" eventType="touchDown" id="gum-eM-rH0"/>
                                                         <action selector="unitTextFieldDidChange:" destination="A3A-WE-Iee" eventType="editingChanged" id="LYj-YO-FPP"/>
                                                     </connections>
                                                 </textField>
@@ -873,6 +878,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
+                                                        <action selector="closeKeyboard:" destination="UB0-uO-MiH" eventType="touchDown" id="UXo-Ql-XgI"/>
                                                         <action selector="ingredientTextFieldDidChange:" destination="A3A-WE-Iee" eventType="editingChanged" id="oQb-D1-NGx"/>
                                                     </connections>
                                                 </textField>

@@ -40,7 +40,6 @@ class IngredientTableViewCell: UITableViewCell, UITextFieldDelegate, KeyboardDel
         NotificationCenter.default.removeObserver(self)
     }
     
-    
     func createToolBar() {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
@@ -115,5 +114,11 @@ class IngredientTableViewCell: UITableViewCell, UITextFieldDelegate, KeyboardDel
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func closeKeyboard(_ sender: UITextField) {
+        print("closing keyboard of sender")
+        sender.resignFirstResponder()
+    }
+    
     
 }

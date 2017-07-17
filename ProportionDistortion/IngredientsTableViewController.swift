@@ -9,7 +9,7 @@
 import UIKit
 import os.log
 
-class IngredientsTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+class IngredientsTableViewController: UITableViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
     
 //MARK: Properties
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -33,6 +33,10 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             }
         }
         
+        let tappingAnywhere = UIPanGestureRecognizer(target: self, action: #selector(closeKeyboardsOnSwipe))
+        tappingAnywhere.delegate = self
+        self.view.addGestureRecognizer(tappingAnywhere)
+
         
         updateSavebuttonState()
     }
@@ -41,7 +45,10 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -213,7 +220,20 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
         }
     }
     
-    
+    func closeKeyboardsOnSwipe() {
+        for i in 0..<currentEntries.count {
+            let cellIndex = IndexPath(row: i, section: 0)
+            if tableView.cellForRow(at: cellIndex) != nil {
+                guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {
+                    fatalError("Cell is not of type IngredientTableViewCell")
+                }
+                print("Closing keyboards!!")
+                cell.unitTextField.resignFirstResponder()
+                cell.quantityTextField.resignFirstResponder()
+                cell.ingredientTextField.resignFirstResponder()
+            }
+        }
+    }
     
 // MARK: - Navigation
 
@@ -230,22 +250,6 @@ class IngredientsTableViewController: UITableViewController, UITextFieldDelegate
             ingredients[i].unit = currentEntries[i].2
             
             ingredients[i].ingredient = currentEntries[i].3
-            
-            /*let cellIndex = IndexPath(row: i, section: 0)
-            if tableView.cellForRow(at: cellIndex) != nil {
-                guard let cell = tableView.cellForRow(at: cellIndex) as? IngredientTableViewCell else {
-                    fatalError("Cell is not of type IngredientTableViewCell")
-                }
-                if let quantityText = cell.quantityTextField.text {
-                    ingredients[i].quantity = quantityText
-                }
-                if let unitText = cell.unitTextField.text {
-                    ingredients[i].unit = unitText
-                }
-                if let ingredientText = cell.ingredientTextField.text {
-                    ingredients[i].ingredient = ingredientText
-                }
-            }*/
         }
     }
     
